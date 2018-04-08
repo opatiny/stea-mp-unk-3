@@ -7,13 +7,20 @@
 
 #define LUMINOSOTY    A6
 #define TEMPERATURE   5
+
 #define CARD_READER   1
+#define WIRE_SLAVE    8 // address of the slave
+
 #define RED_LED       6
 #define GREEN_LED     8
+
 
 void setup() {
   setupParameters();
   checkParameters(); // setup automatically the default parameter after install boot loader
+#ifdef WIRE_SLAVE
+  startWireSlave();
+#endif
   nilSysBegin();
 }
 
