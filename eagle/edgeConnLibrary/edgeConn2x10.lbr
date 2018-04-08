@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.4.0">
+<eagle version="8.3.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
@@ -38,7 +38,7 @@
 <layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
-<layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
+<layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
@@ -94,6 +94,45 @@
 <text x="19.685" y="3.302" size="1.27" layer="21">1</text>
 <text x="-21.209" y="3.175" size="1.27" layer="21">10</text>
 </package>
+<package name="CONN2X10PRINT">
+<description>Footprint for 10/20 edge connector.</description>
+<text x="17.4498" y="-8.4328" size="1.524" layer="22">A</text>
+<text x="-17.8308" y="-8.4328" size="1.524" layer="22">J</text>
+<text x="17.7038" y="7.5438" size="1.524" layer="21">1</text>
+<text x="-19.2278" y="7.4168" size="1.524" layer="21">10</text>
+<pad name="6" x="-1.9812" y="1.9812" drill="1.9812"/>
+<pad name="7" x="-5.9436" y="1.9812" drill="1.9812"/>
+<pad name="8" x="-9.906" y="1.9812" drill="1.9812"/>
+<pad name="9" x="-13.8684" y="1.9812" drill="1.9812"/>
+<pad name="10" x="-17.8308" y="1.9812" drill="1.9812"/>
+<pad name="J" x="-17.8308" y="-1.9812" drill="1.9812"/>
+<pad name="I" x="-13.8684" y="-1.9812" drill="1.9812"/>
+<pad name="H" x="-9.906" y="-1.9812" drill="1.9812"/>
+<pad name="G" x="-5.9436" y="-1.9812" drill="1.9812"/>
+<pad name="F" x="-1.9812" y="-1.9812" drill="1.9812"/>
+<pad name="E" x="1.9812" y="-1.9812" drill="1.9812"/>
+<pad name="5" x="1.9812" y="1.9812" drill="1.9812"/>
+<pad name="4" x="5.9436" y="1.9812" drill="1.9812"/>
+<pad name="3" x="9.906" y="1.9812" drill="1.9812"/>
+<pad name="2" x="13.8684" y="1.9812" drill="1.9812"/>
+<pad name="1" x="17.8308" y="1.9812" drill="1.9812"/>
+<pad name="A" x="17.8308" y="-1.9812" drill="1.9812"/>
+<pad name="B" x="13.8684" y="-1.9812" drill="1.9812"/>
+<pad name="C" x="9.906" y="-1.9812" drill="1.9812"/>
+<pad name="D" x="5.9436" y="-1.9812" drill="1.9812"/>
+<wire x1="-21.7932" y1="5.9436" x2="21.7932" y2="5.9436" width="0.127" layer="21"/>
+<wire x1="21.7932" y1="5.9436" x2="21.7932" y2="-5.9436" width="0.127" layer="21"/>
+<wire x1="21.7932" y1="-5.9436" x2="-21.7932" y2="-5.9436" width="0.127" layer="21"/>
+<hole x="-26.7462" y="0" drill="3.302"/>
+<hole x="26.7462" y="0" drill="3.302"/>
+<wire x1="-21.7932" y1="-5.9436" x2="-21.7932" y2="5.9436" width="0.127" layer="21"/>
+<wire x1="-21.7932" y1="5.9436" x2="-29.718" y2="5.9436" width="0.127" layer="21"/>
+<wire x1="-29.718" y1="5.9436" x2="-29.718" y2="-5.9436" width="0.127" layer="21"/>
+<wire x1="-29.718" y1="-5.9436" x2="-21.7932" y2="-5.9436" width="0.127" layer="21"/>
+<wire x1="21.7932" y1="5.9436" x2="29.718" y2="5.9436" width="0.127" layer="21"/>
+<wire x1="29.718" y1="5.9436" x2="29.718" y2="-5.9436" width="0.127" layer="21"/>
+<wire x1="29.718" y1="-5.9436" x2="21.7932" y2="-5.9436" width="0.127" layer="21"/>
+</package>
 </packages>
 <symbols>
 <symbol name="CONN2X10">
@@ -119,6 +158,33 @@
 <pin name="2" x="17.78" y="-3.81" length="middle" rot="R270"/>
 <pin name="1" x="22.86" y="-3.81" length="middle" rot="R270"/>
 </symbol>
+<symbol name="CONN2X10PRINT">
+<description>Footprint for 10/20 edge connector.</description>
+<wire x1="-27.94" y1="-7.62" x2="27.94" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="27.94" y1="-7.62" x2="27.94" y2="7.62" width="0.254" layer="94"/>
+<wire x1="27.94" y1="7.62" x2="-27.94" y2="7.62" width="0.254" layer="94"/>
+<wire x1="-27.94" y1="7.62" x2="-27.94" y2="-7.62" width="0.254" layer="94"/>
+<pin name="J" x="-22.86" y="11.43" length="middle" rot="R270"/>
+<pin name="I" x="-17.78" y="11.43" length="middle" rot="R270"/>
+<pin name="H" x="-12.7" y="11.43" length="middle" rot="R270"/>
+<pin name="G" x="-7.62" y="11.43" length="middle" rot="R270"/>
+<pin name="F" x="-2.54" y="11.43" length="middle" rot="R270"/>
+<pin name="E" x="2.54" y="11.43" length="middle" rot="R270"/>
+<pin name="D" x="7.62" y="11.43" length="middle" rot="R270"/>
+<pin name="C" x="12.7" y="11.43" length="middle" rot="R270"/>
+<pin name="B" x="17.78" y="11.43" length="middle" rot="R270"/>
+<pin name="A" x="22.86" y="11.43" length="middle" rot="R270"/>
+<pin name="10" x="-22.86" y="-11.43" length="middle" rot="R90"/>
+<pin name="9" x="-17.78" y="-11.43" length="middle" rot="R90"/>
+<pin name="8" x="-12.7" y="-11.43" length="middle" rot="R90"/>
+<pin name="7" x="-7.62" y="-11.43" length="middle" rot="R90"/>
+<pin name="6" x="-2.54" y="-11.43" length="middle" rot="R90"/>
+<pin name="5" x="2.54" y="-11.43" length="middle" rot="R90"/>
+<pin name="4" x="7.62" y="-11.43" length="middle" rot="R90"/>
+<pin name="3" x="12.7" y="-11.43" length="middle" rot="R90"/>
+<pin name="2" x="17.78" y="-11.43" length="middle" rot="R90"/>
+<pin name="1" x="22.86" y="-11.43" length="middle" rot="R90"/>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="CONN2X10">
@@ -128,6 +194,41 @@
 </gates>
 <devices>
 <device name="" package="CONN2X10">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="10" pad="10"/>
+<connect gate="G$1" pin="2" pad="2"/>
+<connect gate="G$1" pin="3" pad="3"/>
+<connect gate="G$1" pin="4" pad="4"/>
+<connect gate="G$1" pin="5" pad="5"/>
+<connect gate="G$1" pin="6" pad="6"/>
+<connect gate="G$1" pin="7" pad="7"/>
+<connect gate="G$1" pin="8" pad="8"/>
+<connect gate="G$1" pin="9" pad="9"/>
+<connect gate="G$1" pin="A" pad="A"/>
+<connect gate="G$1" pin="B" pad="B"/>
+<connect gate="G$1" pin="C" pad="C"/>
+<connect gate="G$1" pin="D" pad="D"/>
+<connect gate="G$1" pin="E" pad="E"/>
+<connect gate="G$1" pin="F" pad="F"/>
+<connect gate="G$1" pin="G" pad="G"/>
+<connect gate="G$1" pin="H" pad="H"/>
+<connect gate="G$1" pin="I" pad="I"/>
+<connect gate="G$1" pin="J" pad="J"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="CONN2X10PRINT" uservalue="yes">
+<description>Footprint for 10/20 edge connector.</description>
+<gates>
+<gate name="G$1" symbol="CONN2X10PRINT" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="CONN2X10PRINT">
 <connects>
 <connect gate="G$1" pin="1" pad="1"/>
 <connect gate="G$1" pin="10" pad="10"/>
