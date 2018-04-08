@@ -27,16 +27,11 @@
 
 #include <Wire.h>
 
-
-void setup()
-{
-
+void setup() {
   delay (4000);
   Serial.begin(9600);
   Serial.println("\nI2C Scanner");
   Wire.begin();
-
-
 }
 
 
@@ -47,7 +42,7 @@ void loop()
   Serial.println("Scanning...");
 
   int nDevices = 0;
-  for (byte address = 10; address < 127; address++ ) {
+  for (byte address = 1; address < 127; address++ ) {
 
     // The i2c_scanner uses the return value of
     // the Write.endTransmisstion to see if
