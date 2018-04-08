@@ -27,6 +27,7 @@ void loop() {
     }
     pinMode(connPins[i], OUTPUT);
     digitalWrite(connPins[i], LOW);
+    
     for (byte j = 0; j < sizeof(connPins); j++) {
       if (i != j) {
         Serial.print( digitalRead(connPins[j]) );

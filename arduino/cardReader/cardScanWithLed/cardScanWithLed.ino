@@ -1,3 +1,5 @@
+// scanning perf cards with led blinking
+
 // results obtained with first card ever
 /* x111111110
    1x11111101
@@ -30,7 +32,7 @@ void loop() {
     }
 
     pinMode(connPins[i], OUTPUT);
-    digitalWrite(connPins[i], HIGH);
+    digitalWrite(connPins[i], LOW);
 
     for (byte j = 0; j < sizeof(connPins); j++) {
       digitalWrite(RED_LED, HIGH);
@@ -49,5 +51,5 @@ void loop() {
   }
   digitalWrite(GREEN_LED, HIGH);
   Serial.println("");
-  delay(5000);
+  delay(4000);
 }
