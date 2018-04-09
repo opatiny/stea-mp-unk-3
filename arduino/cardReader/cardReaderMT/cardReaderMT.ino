@@ -5,11 +5,11 @@
 
 
 
-#define LUMINOSOTY    A6
+#define LUMINOSITY    A6
 #define TEMPERATURE   5
 
 #define CARD_READER   1
-#define WIRE_SLAVE    8 // address of the slave
+#define WIRE_SLAVE    8 // address of the I2C slave
 
 #define RED_LED       6
 #define GREEN_LED     8

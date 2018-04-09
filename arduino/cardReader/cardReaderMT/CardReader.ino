@@ -11,49 +11,54 @@ NIL_THREAD(ThreadCardReader, arg) {
 
   long previousKey = 0;
   byte counter = 0;
+
+  setParameter(PARAM_SCAN_ENABLED, 1);
+
   while (true) {
     long key = 0;
-    for (byte i = 0; i < sizeof(connPins); i++) {
-      digitalWrite(RED_LED, !digitalRead(RED_LED));
-      nilThdSleepMilliseconds(30);
-      for (byte j = 0; j < sizeof(connPins); j++) {
-        pinMode(connPins[j], INPUT_PULLUP); // to avoid floating pins
-      }
-      pinMode(connPins[i], OUTPUT);
-      digitalWrite(connPins[i], LOW);
+    if (getParameter(PARAM_SCAN_ENABLED) == 1) {
 
-      for (byte j = 0; j < sizeof(connPins); j++) {
-        if (i != j) {
-          key ^= digitalRead(connPins[j]) << j;
+      for (byte i = 0; i < sizeof(connPins); i++) {
+        digitalWrite(RED_LED, !digitalRead(RED_LED));
+        nilThdSleepMilliseconds(30);
+        for (byte j = 0; j < sizeof(connPins); j++) {
+          pinMode(connPins[j], INPUT_PULLUP); // to avoid floating pins
         }
+        pinMode(connPins[i], OUTPUT);
+        digitalWrite(connPins[i], LOW);
+
+        for (byte j = 0; j < sizeof(connPins); j++) {
+          if (i != j) {
+            key ^= digitalRead(connPins[j]) << j;
+          }
+        }
+
+        key = hash32shift(key);
+
       }
-
-      key = hash32shift(key);
-
-    }
-    key ^= 0b1010001001111010001000110111111;
-    if (key == previousKey && key != 0) {
-      if (counter < 10) {
-        counter++;
+      key ^= 0b1010001001111010001000110111111; // key obtained when no card is inserted, we use a xor to turn this value to zero (easier to recognise)
+      if (key == previousKey && key != 0) {
+        if (counter < 10) {
+          counter++;
+        }
+      } else {
+        previousKey = key;
+        counter = 0;
       }
     } else {
-      previousKey = key;
-      counter = 0;
+      counter = 4;
+      key=0xFFFFFFFF;
     }
 
     if (counter > 2) {
-      setParameter(PARAM_SCAN_1, key >> 0 & 255);
-      setParameter(PARAM_SCAN_2, key >> 8 & 255);
-      setParameter(PARAM_SCAN_3, key >> 16 & 255);
-      setParameter(PARAM_SCAN_4, key >> 24 & 255);
+      setParameter(PARAM_SCAN_1, key >> 0 & 65535);
+      setParameter(PARAM_SCAN_2, key >> 16 & 65535);
       digitalWrite(GREEN_LED, HIGH);
       nilThdSleepMilliseconds(5000);
       digitalWrite(GREEN_LED, LOW);
     } else {
       setParameter(PARAM_SCAN_1, 0);
       setParameter(PARAM_SCAN_2, 0);
-      setParameter(PARAM_SCAN_3, 0);
-      setParameter(PARAM_SCAN_4, 0);
     }
 
     nilThdSleepMilliseconds(400);

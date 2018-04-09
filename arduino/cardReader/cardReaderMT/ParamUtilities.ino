@@ -8,7 +8,7 @@
 int parameters[MAX_PARAM];
 
 void setupParameters() {
-  //We copy all the value in the parameters table
+  //We copy all the values in the parameters table
   eeprom_read_block((void*)parameters, (const void*)EE_START_PARAM, MAX_PARAM * 2);
 }
 

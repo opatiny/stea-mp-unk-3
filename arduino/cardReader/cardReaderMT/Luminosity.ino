@@ -1,12 +1,12 @@
-#ifdef LUMINOSOTY
+#ifdef LUMINOSITY
 
 NIL_WORKING_AREA(waThreadLuminosity, 0);
 
 NIL_THREAD(ThreadLuminosity, arg) {
-  pinMode(LUMINOSOTY, INPUT);
+  pinMode(LUMINOSITY, INPUT);
 
   while (true) {
-    setParameter(PARAM_LUMINOSITY, analogRead(LUMINOSOTY) );
+    setParameter(PARAM_LUMINOSITY, analogRead(LUMINOSITY) );
     nilThdSleepMilliseconds(1000);
   }
 }

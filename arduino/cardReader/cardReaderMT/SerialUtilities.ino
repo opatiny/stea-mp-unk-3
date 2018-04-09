@@ -1,4 +1,4 @@
-void processUtilitiesCommand(char command, char* paramValue, Print* output) {
+void processUtilitiesCommand(char command, char* paramValue, Print* output) { // char and char* ??
   switch (command) {
     case 'c':
       if (paramValue[0] != '\0') {

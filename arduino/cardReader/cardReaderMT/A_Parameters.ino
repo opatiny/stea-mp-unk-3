@@ -23,9 +23,7 @@
 #define PARAM_LED_2        4
 #define PARAM_SCAN_1       5
 #define PARAM_SCAN_2       6
-#define PARAM_SCAN_3       7
-#define PARAM_SCAN_4       8
-
+#define PARAM_SCAN_ENABLED 7
 
 
 #define INT_MAX_VALUE       32767

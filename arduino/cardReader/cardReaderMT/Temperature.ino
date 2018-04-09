@@ -23,7 +23,7 @@ NIL_THREAD(ThreadTemperature, arg) {
 
     present = ds.reset();
     ds.select(addr);
-    ds.write(0xBE);         // Read Scratchpad
+    ds.write(0xBE);         // Read Scratchpad (??)
 
     for ( i = 0; i < 9; i++) {           // we need 9 bytes
       data[i] = ds.read();
