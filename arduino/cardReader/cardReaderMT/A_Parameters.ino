@@ -6,10 +6,10 @@
    changed by the user during the functionment
    of the Bioreactor.
 
-   The parameter are loaded during the boot.
+   The parameters are loaded during the boot.
 
-   All change to important parameters are saved
-   to the EEPROM
+   All important changes made on a parameter are saved
+   in the EEPROM.
  *********************************************/
 
 
@@ -21,7 +21,7 @@
 #define PARAM_SWITCH       2
 #define PARAM_LED_1        3
 #define PARAM_LED_2        4
-#define PARAM_SCAN_1       5
+#define PARAM_SCAN_1       5 // hash is returned on 2 16 bits binaries. -> scan 1 and 2
 #define PARAM_SCAN_2       6
 #define PARAM_SCAN_ENABLED 7
 
@@ -30,7 +30,7 @@
 #define LONG_MAX_VALUE      2147483647
 
 
-void resetParameters() {
+void resetParameters() { // turn all parameters to 0
   for (byte i = 0; i < 10; i++) {
     setAndSaveParameter(i, 0);
   }

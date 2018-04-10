@@ -1,3 +1,5 @@
+// luminosity thread
+
 #ifdef LUMINOSITY
 
 NIL_WORKING_AREA(waThreadLuminosity, 0);

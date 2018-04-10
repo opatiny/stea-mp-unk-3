@@ -1,6 +1,7 @@
+// Thred allowing detection of the "golden card" (matrix5x5). When card is detected, scanning stops and animation is run on the matrix.
 
 #define SIZE 5
-#define delayTime 100
+#define delayTime 130
 #include <TimerThree.h>
 
 boolean matrix[SIZE][SIZE]; // [rows][colums]
@@ -30,7 +31,7 @@ NIL_THREAD(ThreadAnimation, arg) {
     if (read > 100 && read < 600) {
 
       setParameter(PARAM_SCAN_ENABLED, 0);
-      Timer3.attachInterrupt(refresh);
+      Timer3.attachInterrupt(refresh); // the function attached to timer3 will be executed like an interrupt (delay is defined )
       squareAnim();
       Timer3.detachInterrupt();
 
@@ -42,10 +43,10 @@ NIL_THREAD(ThreadAnimation, arg) {
   }
 }
 
-
+// from here, code is adapted from test program for matrix5x5. Path: arduino/cardReader/ledMatrix5x5/squaresOnMatrix
 void squareAnim() {
   square1();
-  nilThdSleepMilliseconds(delayTime);
+  nilThdSleepMilliseconds(2*delayTime);
   square2();
   nilThdSleepMilliseconds(delayTime);
   square3();
@@ -53,7 +54,7 @@ void squareAnim() {
   square4();
   nilThdSleepMilliseconds(delayTime);
   square5();
-  nilThdSleepMilliseconds(delayTime);
+  nilThdSleepMilliseconds(2*delayTime);
   square4();
   nilThdSleepMilliseconds(delayTime);
   square3();

@@ -1,3 +1,5 @@
+// temperature thread. Based on arduino/returnTemperature
+
 #ifdef TEMPERATURE
 
 #include <OneWire.h>

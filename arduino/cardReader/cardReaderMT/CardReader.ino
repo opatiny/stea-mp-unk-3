@@ -1,3 +1,5 @@
+// cardReader thread: scans the pins of the edge connector, and returns 32 bit hash corresponding to inserted perfCard. Additional control of the green and red leds.
+
 #ifdef CARD_READER
 
 NIL_WORKING_AREA(waThreadCardReader, 32);
@@ -18,6 +20,7 @@ NIL_THREAD(ThreadCardReader, arg) {
     long key = 0;
     if (getParameter(PARAM_SCAN_ENABLED) == 1) {
 
+      // code uner is based on arduino/cardscan and arduino/testHash
       for (byte i = 0; i < sizeof(connPins); i++) {
         digitalWrite(RED_LED, !digitalRead(RED_LED));
         nilThdSleepMilliseconds(30);
@@ -47,7 +50,7 @@ NIL_THREAD(ThreadCardReader, arg) {
       }
     } else {
       counter = 4;
-      key=0xFFFFFFFF;
+      key = 0xFFFFFFFF;
     }
 
     if (counter > 2) {

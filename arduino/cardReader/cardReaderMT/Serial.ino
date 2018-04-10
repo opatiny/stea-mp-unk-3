@@ -1,3 +1,6 @@
+// code taken from https://github.com/Hackuarium/simple-spectro/tree/master/arduino/SimpleSpectro. Thread allowing serail over usb communication.
+
+
 #define THR_SERIAL         1
 
 #ifdef THR_SERIAL

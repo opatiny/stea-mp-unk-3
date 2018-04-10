@@ -1,3 +1,6 @@
+// setting all threads on + defining threads order of priority.
+
+
 NIL_WORKING_AREA(waThreadMonitoring, 0);
 NIL_THREAD(ThreadMonitoring, arg) {
   nilThdSleepMilliseconds(1000);

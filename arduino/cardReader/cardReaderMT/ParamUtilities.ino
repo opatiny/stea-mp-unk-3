@@ -1,3 +1,5 @@
+// code taken from https://github.com/Hackuarium/simple-spectro/tree/master/arduino/SimpleSpectro. Works as a library for multithreading an arduino.
+
 #define INT_MAX_VALUE       32767
 #define LONG_MAX_VALUE      2147483647
 

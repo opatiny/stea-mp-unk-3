@@ -1,3 +1,6 @@
+// code taken from https://github.com/Hackuarium/simple-spectro/tree/master/arduino/SimpleSpectro. Allows serial monitoring communication.
+
+
 void processUtilitiesCommand(char command, char* paramValue, Print* output) { // char and char* ??
   switch (command) {
     case 'c':

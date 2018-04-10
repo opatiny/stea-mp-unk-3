@@ -1,3 +1,5 @@
+// including libraries, defining main pins used and setting up general setup and loop.
+
 #include <NilRTOS.h>
 #include <avr/wdt.h> // watch dog for automatic reboot in case of crash
 #include <TimeLib.h> // git clone https://github.com/PaulStoffregen/Time
