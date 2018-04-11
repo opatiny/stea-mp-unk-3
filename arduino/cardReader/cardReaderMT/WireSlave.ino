@@ -1,3 +1,5 @@
+// setting ATmega32U4 as I2C slave.
+
 #ifdef WIRE_SLAVE
 
 #include <Wire.h>
@@ -12,7 +14,7 @@ void startWireSlave() {
 
 void requestEvent() {
   int value = getParameter(command);
-  Wire.write(value >> 0 & 255); // value ??
+  Wire.write(value >> 0 & 255);
   Wire.write(value >> 8 & 255);
 }
 
