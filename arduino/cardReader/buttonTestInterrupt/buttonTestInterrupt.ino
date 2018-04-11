@@ -1,3 +1,5 @@
+// testing button with interrupt
+
 #define PIN1 0
 #define PIN2 1
 
@@ -11,6 +13,10 @@ void setup() {
 
   pinMode(RED_LED, OUTPUT);
   pinMode(GREEN_LED, OUTPUT);
+
+  attachInterrupt(digitalPinToInterrupt(PIN1), pinsState, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(PIN2), pinsState, CHANGE);
+
 }
 
 long counter = 0;
@@ -32,11 +38,21 @@ void loop() {
   } else {
     digitalWrite(GREEN_LED, LOW);
   }
-  if (counter % 1000 == 0) {
-    Serial.print("PIN1: ");
-    Serial.println(digitalRead(PIN1));
-    Serial.print("PIN2: ");
-    Serial.println(digitalRead(PIN2));
-  }
+
   delay(1);
+}
+
+long lastEvent = 0;
+
+void pinsState() {
+  bool mode1 = digitalRead(PIN1);
+  bool mode2 = digitalRead(PIN2);
+  if ((millis() - lastEvent) > 10) {
+    Serial.print("PIN1: ");
+    Serial.println(mode1);
+    Serial.print("PIN2: ");
+    Serial.println(mode2);
+
+  }
+  lastEvent = millis();
 }
