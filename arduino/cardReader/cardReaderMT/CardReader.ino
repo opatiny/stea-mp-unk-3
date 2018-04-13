@@ -16,11 +16,13 @@ NIL_THREAD(ThreadCardReader, arg) {
 
   setParameter(PARAM_SCAN_ENABLED, 1);
 
+nilThdSleepMilliseconds(1000);
+
   while (true) {
     long key = 0;
     if (getParameter(PARAM_SCAN_ENABLED) > 0) {
 
-      // code uner is based on arduino/cardscan and arduino/testHash
+      // code is based on arduino/cardscan and arduino/testHash
       for (byte i = 0; i < sizeof(connPins); i++) {
         digitalWrite(RED_LED, !digitalRead(RED_LED));
         nilThdSleepMilliseconds(30);
