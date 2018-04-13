@@ -53,7 +53,7 @@ void loop() {
       Serial.print("I2C device found at address 0x");
       if (address < 16)
         Serial.print("0");
-      Serial.print(address, HEX);
+      Serial.print(address, BIN);
       Serial.println("  !");
 
       nDevices++;
@@ -61,7 +61,7 @@ void loop() {
       Serial.print("Unknow error at address 0x");
       if (address < 16)
         Serial.print("0");
-      Serial.println(address, HEX);
+      Serial.println(address, BIN);
     }
   }
   if (nDevices == 0)

@@ -12,7 +12,7 @@ void setup()
   Serial.println("Serial Started");
 
   Wire.begin();           // Wire must be started!
-  ledDriver.begin(B000000);  // Address pins A5-A0 set to B111000
+  ledDriver.begin(B000001);  // Address pins A5-A0 set to B111000
   ledDriver.init();
 
 }
