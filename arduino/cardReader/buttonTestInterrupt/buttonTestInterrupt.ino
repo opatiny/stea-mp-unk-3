@@ -1,4 +1,4 @@
-// testing button with interrupt
+// testing button with interrupt to print pins state on change
 
 #define PIN1 0
 #define PIN2 1
@@ -42,7 +42,7 @@ void loop() {
   delay(1);
 }
 
-long lastEvent = 0;
+long lastEvent = 0; // trick to avoid deboucing
 
 void pinsState() {
   bool mode1 = digitalRead(PIN1);

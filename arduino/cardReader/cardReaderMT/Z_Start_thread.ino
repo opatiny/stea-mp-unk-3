@@ -33,6 +33,9 @@ NIL_THREADS_TABLE_ENTRY(NULL, ThreadTemperature, NULL, waThreadTemperature, size
 NIL_THREADS_TABLE_ENTRY(NULL, ThreadCardReader, NULL, waThreadCardReader, sizeof(waThreadCardReader))
 #endif
 
+#ifdef BUTTON_1 && BUTTON_2
+NIL_THREADS_TABLE_ENTRY(NULL, ThreadButton, NULL, waThreadButton, sizeof(waThreadButton))
+#endif
 
 
 NIL_THREADS_TABLE_ENTRY(NULL, ThreadMonitoring, NULL, waThreadMonitoring, sizeof(waThreadMonitoring))

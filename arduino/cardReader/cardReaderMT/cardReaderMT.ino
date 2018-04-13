@@ -6,15 +6,20 @@
 #include "lib/Utility.h"
 
 
-
+// setting sensors pins
 #define LUMINOSITY    A6
 #define TEMPERATURE   5
 
 #define CARD_READER   1
 #define WIRE_SLAVE    8 // address of the I2C slave
 
+// defining LEDs pins
 #define RED_LED       6
 #define GREEN_LED     8
+
+// defining button pins
+#define BUTTON_1      0
+#define BUTTON_2      1
 
 
 void setup() {
