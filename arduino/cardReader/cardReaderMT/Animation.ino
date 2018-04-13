@@ -14,7 +14,7 @@ byte rows[] = {A0, 13, 10, 9, 11};
 NIL_WORKING_AREA(waThreadAnimation, 32);
 
 NIL_THREAD(ThreadAnimation, arg) {
-
+  nilThdSleepMilliseconds(100);
   off();
   Timer3.initialize(10000);
 
@@ -32,7 +32,7 @@ NIL_THREAD(ThreadAnimation, arg) {
     digitalWrite(A0, HIGH);
 
     if (read1 > 100 && read1 < 800) {
-      
+
       Timer3.attachInterrupt(refresh); // the function attached to timer3 will be executed like an interrupt (delay is defined )
       if (read2 > 100 && read2 < 800) {
         setParameter(PARAM_SCAN_ENABLED, -1);
@@ -47,7 +47,7 @@ NIL_THREAD(ThreadAnimation, arg) {
       setParameter(PARAM_SCAN_ENABLED, 1);
     }
 
-    nilThdSleepMilliseconds(100);
+    nilThdSleepMilliseconds(1000);
   }
 }
 
@@ -70,6 +70,9 @@ void squareGold() {
   nilThdSleepMilliseconds(delayTime);
   square2(1);
   nilThdSleepMilliseconds(delayTime);
+  square1(1);
+  nilThdSleepMilliseconds(delayTime);
+  off();
 }
 
 void squarePlatinium() {
@@ -92,7 +95,7 @@ void squarePlatinium() {
   delay(delayTime);
   square1(1);
   delay(delayTime);
-  for (byte i = 0; i < 3; i++) {
+  for (byte i = 0; i < 2; i++) {
     squareValue(1);
     delay(delayTime);
     squareValue(2);
@@ -100,6 +103,14 @@ void squarePlatinium() {
     squareValue(3);
     delay(delayTime);
   }
+  for (byte i = 0; i < 10; i++) {
+    filedSquare5(1, 2);
+    delay(delayTime / 2);
+    filedSquare5(2, 1);
+    delay(delayTime / 2);
+  }
+  off();
+
 }
 
 void squareValue(byte value) {
@@ -155,6 +166,21 @@ void square5(byte value) {
     matrix[SIZE - 1][col] = value;
     matrix[col][0] = value;
     matrix[col][SIZE - 1] = value;
+  }
+}
+
+void filedSquare5(byte value1, int value2) {
+  off();
+  for (byte col = 0; col < SIZE; col++) {
+    matrix[0][col] = value1;
+    matrix[SIZE - 1][col] = value1;
+    matrix[col][0] = value1;
+    matrix[col][SIZE - 1] = value1;
+  }
+  for (byte col = 1; col < SIZE - 1; col++) {
+    for (byte row = 1; row < SIZE - 1; row++) {
+      matrix[col][row] = value2;
+    }
   }
 }
 
