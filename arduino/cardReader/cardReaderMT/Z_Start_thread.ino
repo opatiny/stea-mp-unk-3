@@ -16,10 +16,10 @@ NIL_THREADS_TABLE_BEGIN()
 // the order should be exact, Acquisition has the higher priority ...
 
 
+NIL_THREADS_TABLE_ENTRY(NULL, ThreadSerial, NULL, waThreadSerial, sizeof(waThreadSerial))
+
 NIL_THREADS_TABLE_ENTRY(NULL, ThreadAnimation, NULL, waThreadAnimation, sizeof(waThreadAnimation))
 
-
-NIL_THREADS_TABLE_ENTRY(NULL, ThreadSerial, NULL, waThreadSerial, sizeof(waThreadSerial))
 
 #ifdef LUMINOSITY
 NIL_THREADS_TABLE_ENTRY(NULL, ThreadLuminosity, NULL, waThreadLuminosity, sizeof(waThreadLuminosity))

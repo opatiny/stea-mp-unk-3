@@ -18,7 +18,7 @@ NIL_THREAD(ThreadCardReader, arg) {
 
   while (true) {
     long key = 0;
-    if (getParameter(PARAM_SCAN_ENABLED) == 1) {
+    if (getParameter(PARAM_SCAN_ENABLED) > 0) {
 
       // code uner is based on arduino/cardscan and arduino/testHash
       for (byte i = 0; i < sizeof(connPins); i++) {
@@ -50,7 +50,14 @@ NIL_THREAD(ThreadCardReader, arg) {
       }
     } else {
       counter = 4;
-      key = 0xFFFFFFFF;
+      switch (getParameter(PARAM_SCAN_ENABLED)) {
+        case 0:
+          key = 0x00000001;
+          break;
+        case -1:
+          key = 0x00000002;
+          break;
+      }
     }
 
     if (counter > 2) {

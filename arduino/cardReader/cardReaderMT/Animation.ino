@@ -1,10 +1,10 @@
 // Thred allowing detection of the "golden card" (matrix5x5). When card is detected, scanning stops and animation is run on the matrix.
 
 #define SIZE 5
-#define delayTime 130
+
 #include <TimerThree.h>
 
-boolean matrix[SIZE][SIZE]; // [rows][colums]
+byte matrix[SIZE][SIZE]; // [rows][colums]
 
 byte cols[] = {A5, A4, A3, A2, A1};
 byte rows[] = {A0, 13, 10, 9, 11};
@@ -15,28 +15,36 @@ NIL_WORKING_AREA(waThreadAnimation, 32);
 
 NIL_THREAD(ThreadAnimation, arg) {
 
-  for (byte i = 0; i < SIZE; i++) {
-    for (byte j = 0; j < SIZE; j++) {
-      matrix[i][j] = false;
-    }
-  }
+  off();
   Timer3.initialize(10000);
 
   while (true) {
     pinMode(A5, OUTPUT);
     pinMode(A0, INPUT_PULLUP);
     digitalWrite(A5, LOW);
-    int read = analogRead(A0);
+    int read1 = analogRead(A0);
     digitalWrite(A5, HIGH);
-    if (read > 100 && read < 600) {
 
-      setParameter(PARAM_SCAN_ENABLED, 0);
+    pinMode(A5, INPUT_PULLUP);
+    pinMode(A0, OUTPUT);
+    digitalWrite(A0, LOW);
+    int read2 = analogRead(A5);
+    digitalWrite(A0, HIGH);
+
+    if (read1 > 100 && read1 < 800) {
+      
       Timer3.attachInterrupt(refresh); // the function attached to timer3 will be executed like an interrupt (delay is defined )
-      squareAnim();
+      if (read2 > 100 && read2 < 800) {
+        setParameter(PARAM_SCAN_ENABLED, -1);
+        squarePlatinium();
+      } else {
+        setParameter(PARAM_SCAN_ENABLED, 0);
+        squareGold();
+      }
       Timer3.detachInterrupt();
 
     } else {
-       setParameter(PARAM_SCAN_ENABLED, 1);
+      setParameter(PARAM_SCAN_ENABLED, 1);
     }
 
     nilThdSleepMilliseconds(100);
@@ -44,88 +52,135 @@ NIL_THREAD(ThreadAnimation, arg) {
 }
 
 // from here, code is adapted from test program for matrix5x5. Path: arduino/cardReader/ledMatrix5x5/squaresOnMatrix
-void squareAnim() {
-  square1();
-  nilThdSleepMilliseconds(2*delayTime);
-  square2();
+void squareGold() {
+  int delayTime = 500;
+  square1(1);
   nilThdSleepMilliseconds(delayTime);
-  square3();
+  square2(1);
   nilThdSleepMilliseconds(delayTime);
-  square4();
+  square3(1);
   nilThdSleepMilliseconds(delayTime);
-  square5();
-  nilThdSleepMilliseconds(2*delayTime);
-  square4();
+  square4(1);
   nilThdSleepMilliseconds(delayTime);
-  square3();
+  square5(1);
   nilThdSleepMilliseconds(delayTime);
-  square2();
+  square4(1);
+  nilThdSleepMilliseconds(delayTime);
+  square3(1);
+  nilThdSleepMilliseconds(delayTime);
+  square2(1);
   nilThdSleepMilliseconds(delayTime);
 }
 
-void off() {
+void squarePlatinium() {
+  int delayTime = 250;
+  square1(1);
+  delay(delayTime);
+  square2(2);
+  delay(delayTime);
+  square3(1);
+  delay(delayTime);
+  square4(2);
+  delay(delayTime);
+  square5(1);
+  delay(delayTime);
+  square4(2);
+  delay(delayTime);
+  square3(1);
+  delay(delayTime);
+  square2(2);
+  delay(delayTime);
+  square1(1);
+  delay(delayTime);
+  for (byte i = 0; i < 3; i++) {
+    squareValue(1);
+    delay(delayTime);
+    squareValue(2);
+    delay(delayTime);
+    squareValue(3);
+    delay(delayTime);
+  }
+}
+
+void squareValue(byte value) {
   for (byte col = 0; col < SIZE; col++) {
     for (byte row = 0; row < SIZE; row++) {
-      matrix[col][row] = false;
+      matrix[col][row] = value;
     }
   }
 }
 
-void square1() {
-  off();
-  matrix[2][2] = true;
+void off() {
+  squareValue(0);
 }
 
-void square2() {
+void square1(byte value) {
   off();
-  matrix[2][1] = true;
-  matrix[1][2] = true;
-  matrix[2][3] = true;
-  matrix[3][2] = true;
+  matrix[2][2] = value;
 }
 
-void square3() {
+
+void square2(byte value) {
+  off();
+  matrix[2][1] = value;
+  matrix[1][2] = value;
+  matrix[2][3] = value;
+  matrix[3][2] = value;
+}
+
+void square3(byte value) {
   off();
   for (byte col = 1; col < (SIZE - 1); col++) {
-    matrix[1][col] = true;
-    matrix[SIZE - 2][col] = true;
-    matrix[col][1] = true;
-    matrix[col][SIZE - 2] = true;
+    matrix[1][col] = value;
+    matrix[SIZE - 2][col] = value;
+    matrix[col][1] = value;
+    matrix[col][SIZE - 2] = value;
   }
 }
 
-void square4() {
+void square4(byte value) {
   off();
   for (byte col = 0; col < 3; col++) {
-    matrix[col][col + 2] = true;
-    matrix[col + 2][col] = true;
-    matrix[col][2 - col] = true;
-    matrix[col + 2][4 - col] = true;
+    matrix[col][col + 2] = value;
+    matrix[col + 2][col] = value;
+    matrix[col][2 - col] = value;
+    matrix[col + 2][4 - col] = value;
   }
 }
 
-void square5() {
+void square5(byte value) {
   off();
   for (byte col = 0; col < SIZE; col++) {
-    matrix[0][col] = true;
-    matrix[SIZE - 1][col] = true;
-    matrix[col][0] = true;
-    matrix[col][SIZE - 1] = true;
+    matrix[0][col] = value;
+    matrix[SIZE - 1][col] = value;
+    matrix[col][0] = value;
+    matrix[col][SIZE - 1] = value;
   }
 }
 
 
 void refresh() {
+
   for (byte col = 0; col < SIZE; col++) {
     for (byte row = 0; row < SIZE; row++) {
-      if (matrix[col][row]) {
-        pinMode(rows[row], OUTPUT);
-        digitalWrite(rows[row], HIGH);
-        pinMode(cols[col], OUTPUT);
-        digitalWrite(cols[col], LOW);
-        pinMode(rows[row], INPUT);
-        pinMode(cols[col], INPUT);
+      pinMode(rows[row], OUTPUT);
+      pinMode(cols[col], OUTPUT);
+      switch (matrix[col][row]) {
+        case 3:
+          digitalWrite(rows[row], LOW);
+          digitalWrite(cols[col], HIGH);
+        case 1:
+          digitalWrite(rows[row], HIGH);
+          digitalWrite(cols[col], LOW);
+          break;
+        case 2:
+          digitalWrite(rows[row], LOW);
+          digitalWrite(cols[col], HIGH);
+          break;
       }
+      pinMode(rows[row], INPUT);
+      pinMode(cols[col], INPUT);
     }
   }
 }
+
