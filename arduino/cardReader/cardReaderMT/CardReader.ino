@@ -63,8 +63,8 @@ nilThdSleepMilliseconds(1000);
     }
 
     if (counter > 2) {
-      setParameter(PARAM_SCAN_1, key >> 0 & 65535);
-      setParameter(PARAM_SCAN_2, key >> 16 & 65535);
+      setParameter(PARAM_SCAN_1, key >> 16 & 65535);
+      setParameter(PARAM_SCAN_2, key >> 0 & 65535);
       digitalWrite(GREEN_LED, HIGH);
       nilThdSleepMilliseconds(5000);
       digitalWrite(GREEN_LED, LOW);

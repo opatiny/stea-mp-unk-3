@@ -18,13 +18,12 @@
 
 #define PARAM_LUMINOSITY   0
 #define PARAM_TEMPERATURE  1
-#define PARAM_SWITCH       2
+#define PARAM_MODE         2 // mode selected with button position (off, playlist or single song)
 #define PARAM_LED_1        3
 #define PARAM_LED_2        4
 #define PARAM_SCAN_1       5 // hash is returned on 2 16 bits binaries. -> scan 1 and 2
 #define PARAM_SCAN_2       6
 #define PARAM_SCAN_ENABLED 7
-#define PARAM_MODE         8 // mode selected with button position (off, playlist or single song)
 
 
 #define INT_MAX_VALUE       32767
