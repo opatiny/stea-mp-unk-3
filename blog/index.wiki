@@ -36,10 +36,7 @@ dans ce domaine. Ce que l'on veut dévelloper n'a pas réellement d'intérêt pr
 permet d'acquérir des connaissances et de s'amuser. Initialement, le projet est né suite à la récupération 
 imprévue d'une vieille valise à codes sur un tas de déchêts encombrants. L'objectif était alors le suivant: 
 placer, à l'intérieur de cette valise, du matériel électronique qui permettrait de la faire fonctionner comme 
-un lecteur MP3 autonome. Pour cela, nous utilisons un atMega32U4 (le micro-contrôleur de la majorité des Arduino), 
-mais nous nécessitions aussi quelque chose de plus puissant et qui permette notamment de jouer des fichiers MP3, 
-nous utilisons un C.H.I.P, une sorte de mini-ordinateur (NUUUP). Celui-ci est avantageux pour sa sortie jack, 
-sa mémoire importante (3Gb) et son Wi-Fi incorporé $$chip reference$$. 
+un lecteur MP3 autonome. 
 Le projet s'étant nettement précisé depuis le début, voici les objectifs que nous désirons 
 obtenir $$Les expressions "affichage led", "carte perforée" et "lecteur de cartes" sont définies dans le projet 
 hiver qu'on trouve  [ici|https://oci.gyre.ch/blog/?post/2018/02/01/18H-patiny]$$:
@@ -54,6 +51,15 @@ différents.
 * Mise en veille du C.H.I.P. afin de réduire la consommation énergétique sans devoir débrancher de fils.
 *Un mode "single song" où une carte est insérée, puis le morceau correspondant est joué.
 *Un mode "playlist" : les cartes sont insérées l’une après l’autre et les morceaux sont joués à tour de rôle.
+
+!!!1.1 Principes et technologies
+Lors du projet hiver, la partie ''hardware'' a été fortement développée, pour cette 
+partie printemps, ce sera le ''software'' qui sera le plus mis en avant.
+
+Pour cela, nous utilisons un atMega32U4 (le micro-contrôleur de la majorité des Arduino), 
+mais nous nécessitions aussi quelque chose de plus puissant et qui permette notamment de jouer des fichiers MP3.
+Nous utilisons donc un C.H.I.P, une sorte de mini-ordinateur (NUUUP). Celui-ci est avantageux pour sa sortie jack, 
+sa mémoire importante (3Gb) et son Wi-Fi incorporé $$chip reference$$. 
 
 !!!!2. Matériel
 
@@ -72,16 +78,29 @@ __Électronique :__
 *1.5m de fil électrique (diamètre environ 1mm)
 *4 haut-parleurs
 *1 ''subwoofer''
-*1 powerpack à tension de sortie variable (5 à 12 V)
+*1 bloc d'alimentation à tension de sortie variable (5 à 12 V)
 *1 amplificateur 
 
-
-
 __Général :__
-*1 vieille valise en cuir (dimensions intérieures : 450x315x100 mm)
+*1 vieille valise en cuir (dimensions intérieures : 450x315x100mm)
+*92 vis M3 par 10 en nylon noir + 92 écrous M3 en nylon noir
+*4 vis M4 par 20 en nylon noir + 4 écrous M4 en nylon noir
+*700x500mm de MDF 3mm
 
 __Outils :__
-*
+*1 fer à souder
+*Fil d'étain
+*Brucelles
+*1 multimètre
+*1 alimentation variable jusqu'à 20V et 2A
+*1 ordinateur
+*1 perceuse
+*1 mèche M4
+*1 mèche M5
+*1 mèche M15
+*1 tournevis cruciforme
+*1 découpeuse laser qui puisse au moins découper des surfaces 500 par 40mm
+
 
 
 !!!!3 Méthode
