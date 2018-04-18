@@ -1,0 +1,60 @@
+!!!!!stea-mp-unk-3 : Un lecteur MP3 dans un style steampunk
+
+Ce projet fait office de suite au projet hiver. L'objectif est de terminer le lecteur MP3 steampunk que 
+nous avons entrepris pendant ces premiers mois. À la fin de ce cette première partie, nous avions réalisé,
+produit, soudé et testé les circuits électroniques nécessaires au fonctionnement de notre player MP3. 
+Divers programmes de test en Arduino avaient aussi été écrits afin de vérifier le fonctionnement des 
+différentes parties des plaques. À présent, nous procédons à l'assemblage du ''hardware'' et à la 
+programmation en soi.
+
+Ce projet a été réalisé par Océane PATINY.
+
+
+!!!!1. Introduction 
+En 1969, dans la fusée Apollo 11 se trouvait le premier AGC (Apollo Guidance computer) : l'ordinateur le plus 
+puissant de son temps, qui a coûté aux alentours de 10 millions de dollars à produire $$. Pourtant, il 
+n'était composé que de 12'300 transistors (l'entité de base d'un micro-processeur), alors que l'iPhone 6, 
+en comparaison, en a environ 1,6 milliards...
+
+
+Ainsi, le matériel électronique et les ressources informatiques nécessaires à l'utilisation de celui-ci deviennent 
+de plus en plus accessibles. Cela a des conséquences très simples : au lieu d'être seulement utilisées par des scientifiques 
+pour la construction d'outils à la pointe de la technologie, l'électronique et l'informatique sont utilisées 
+par tout un chacun pour réaliser une multitude de projets. Certains sont intéressants, pratiques ou esthétiques, 
+alors que d'autres, on peut le dire, sont justes saugrenus.
+Souvent, ces projets nécessitent un micro-contrôleur et différents périphériques : des LEDs, des moteurs, 
+des ventilateurs, des lasers ou tout un panel de capteurs (température, humidité, pression, luminosité, ...).
+Une plateforme très appréciée pour ces projets est Arduino, qui est un micro-contrôleur facile à utiliser pour 
+
+
+!!!!2. Matériel
+
+Ci-dessous est listé tout le matériel nécessaire à l'obtention de la valise lecteur MP3 complète.
+
+__Électronique :__
+*
+
+__Général :__
+*
+
+__Outils :__
+*
+
+
+!!!!3 Méthode
+!!!3.1 Finalisation et assemblage du hardware
+
+!!!3.2 Programmation
+!3.2.1
+
+!!!!3. Résultats
+
+
+!!!!4. Discussion
+
+
+!!!!5. Conclusion
+
+
+!!!!Références
+
