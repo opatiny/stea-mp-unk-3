@@ -1,7 +1,13 @@
 
 !!!!3 Méthode
-!!!3.1 Dernières étapes de soudure
-Lorsque tout
+!!!3.1 Adressage de l'afficheur LED et soudure des cartes perforées
+Toutes les plaques de l'affichage LED ont été soudées entre la fin du projet hiver et le début du projet printemps. Néanmoins, il restait encore une étape pour qu'elles soient entièrement terminées : leur attribuer à chacune une addresse I2C en court-circuitant les quatre jumpers à l'arrière. À cause des spécifications du composant I2C de ces plaques (le PCA9685) $$ref pca address page$$, le premier bit de l'adresse est forcément à 1, et nous avons décidé de placer les trois suivantes à 0. Ainsi, toutes nos adresses sont de la forme:
+ @@0b1000xxxx@@
+
+En second lieu, il était encore nécessaire de souder des cartes perforées, pour pouvoir les attribuer à des morceaux de musique ou à des playlists. Nous avons fait cela aléatoirement, en prenant toutefois garde à deux aspects : ne pas faire accidentellement deux cartes identique et ne pas relier tous les pins entre eux (la carte ne pourrait alors pas être détectée). Ensuite, nous avons inséré les cartes dans cardReader afin d'obtenir leur code unique (résultat du hash 32 bits élaboré au projet hiver) sous forme de 8 caractères en hexadécimal. Nous imprimons ce code et le collons au dos des cartes afin de pouvoir les distinguer. Une liste des codes unique a été effectuée, avec les morceaux qui leurs sont attribués (LIEN).
+
+IMAGE EXEMPLE CARTE PERF
+
 
 !!!3.1 Finalisation et assemblage du ''hardware''
 Au début de ce projet, toutes les parties principales étaient réunies : les circuits électroniques avaient tous été 
@@ -32,7 +38,7 @@ plaque, les haut-parleurs les plus petits ont été soudés en parallèle l'un �
 AJOUTER IMAGE ledDisplay
 AJOUTER IMAGE LOUDSPEAKERS
 
-Une fois ces plaques terminées, elles ont été testées. Pour tester l'affichage LED, le même système a été utilisé que pour tester les modules séparément : un arduino, ayant une terre commune avec l'afficheur, qui sort les fils SCL et SDA et une alimentation qui offre la terre commune et le +12V. Les quatre fils ont alors juste été connectés à l'afficheur et le programme ''stea-mp-unk-3/arduino/ledDisplay/segmentsTestAll'' a été utilisé.
+Une fois ces plaques terminées, elles ont été testées. Pour tester l'affichage LED, le même système a été utilisé que pour tester les modules séparément : un arduino, ayant une terre commune avec l'afficheur, qui sort les fils SCL et SDA et une alimentation qui offre la terre commune et le +12V. Les quatre fils ont alors juste été connectés à l'afficheur et le programme ''stea-mp-unk-3/arduino/ledDisplay/segmentsTestAll'' a été utilisé. Pour tester l'amplificateur, il a juste été relié à une alimentation 12V standard et à un telephone portable depuis lequel un fichier MP3 était joué. Il fonctionne et les haut-parleurs aussi, néanmoins, le subwoofer a initialement émi un son vibrant désagréable. Pour améliorer cela, nous ...
 
 Afin de terminer l'assemblage du matériel, il a d'a
 
