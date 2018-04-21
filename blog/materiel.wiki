@@ -1,0 +1,40 @@
+!!!!2. Matériel
+
+Ci-dessous est listé tout le matériel nécessaire à l'obtention de la valise lecteur MP3 complète.
+
+__Électronique :__
+*16 circuits imprimés ''ledDisplay'' soudées
+*1 circuit imprimé ''cardReader'' soudé
+*Autant de cartes perforées que de morceaux de musique désirés, soudées de façon unique
+*1 C.H.I.P.
+*1 cable mini USB (pour le chip)
+*1 cable micro USB (pour ''cardReader'')
+*50cm de fil de cuivre dénudé (diamètre environ 1mm)
+*1m de fil de cuivre non dénudé (diamètre environ 2mm)
+*1.5m de fil électrique (diamètre environ 2mm)
+*1.5m de fil électrique (diamètre environ 1mm)
+*4 haut-parleurs
+*1 ''subwoofer''
+*1 bloc d'alimentation à tension de sortie variable (5 à 12 V)
+*1 amplificateur 
+
+__Général :__
+*1 vieille valise en cuir (dimensions intérieures : 450x315x100mm)
+*92 vis M3 par 10 en nylon noir + 92 écrous M3 en nylon noir
+*4 vis M4 par 20 en nylon noir + 4 écrous M4 en nylon noir
+*700x500mm de MDF 3mm
+
+__Outils :__
+*1 fer à souder
+*Fil d'étain
+*Brucelles
+*1 multimètre
+*1 alimentation variable jusqu'à 20V et 2A
+*1 ordinateur
+*1 perceuse
+*1 mèche M4
+*1 mèche M5
+*1 mèche M15
+*1 tournevis cruciforme
+*1 découpeuse laser qui puisse au moins découper des surfaces de 500 par 400mm
+

@@ -1,0 +1,49 @@
+!!!!1. Introduction 
+En 1969, dans la fusée Apollo 11 se trouvait le premier AGC (Apollo Guidance computer) : l'ordinateur le plus 
+puissant de son temps, développé par MIT, qui a coûté aux alentours de 10 millions de dollars à produire $$nasa.gov$$. 
+Pourtant, il 
+n'était composé que de 12'300 transistors (l'entité de base d'un micro-processeur), alors que l'iPhone 6, 
+en comparaison, en contient environ 1,6 milliards $$curiouDroid$$...
+
+Ainsi, le matériel électronique et les ressources informatiques nécessaires à l'utilisation de celui-ci deviennent 
+toujours plus accessibles et performantes. Cela a des conséquences très simples : au lieu d'être seulement utilisées 
+par des scientifiques 
+pour la construction d'outils à la pointe de la technologie, l'électronique et l'informatique sont utilisées 
+par tout un chacun pour réaliser une multitude de projets. Certains sont intéressants, pratiques ou esthétiques, 
+tandis que d'autres, on peut le dire, sont justes saugrenus.
+Souvent, ces projets nécessitent un micro-contrôleur, qui va s'occuper d'associer des ''inputs'' à ''des outputs'' et 
+différents périphériques : des LEDs, des moteurs, 
+des ventilateurs, des lasers et/ou tout un panel de capteurs (température, humidité, pression, luminosité, ...), selon les besoins.
+Une rapide recherche dans un navigateur internet permet de prendre conscience du nombre de projets existants, 
+qui semble croître exponentiellement. Par exemple, rien que pour le type de micro-contôleur Arduino, qui est 
+une plateforme très appréciée car facile à utiliser tant pour faire des prototypes que des produits finis, 
+on peut trouver des pages internet qui listent plusieurs centaines de projets qui l'utilisent $$ $$ $$ $$.
+
+Ce projet s'inscrit dans ce mouvement de créations électroniques réalisées par des personnes sans formation 
+dans ce domaine. Ce que l'on veut dévelloper n'a pas réellement d'intérêt pratique, mais sa fabrication nous 
+permet d'acquérir des connaissances et de s'amuser. Initialement, le projet est né suite à la récupération 
+imprévue d'une vieille valise à codes sur un tas de déchêts encombrants. L'objectif était alors le suivant: 
+placer, à l'intérieur de cette valise, du matériel électronique qui permettrait de la faire fonctionner comme 
+un lecteur MP3 autonome. 
+Le projet s'étant nettement précisé depuis le début, voici les objectifs que nous désirons 
+obtenir $$Les expressions "affichage led", "carte perforée" et "lecteur de cartes" sont définies dans le projet 
+hiver qu'on trouve  [ici|https://oci.gyre.ch/blog/?post/2018/02/01/18H-patiny]$$:
+
+*Contrôle du volume.
+*Lorsqu’une carte perforée est introduite dans le lecteur de cartes, le morceau correspondant doit être joué.
+*Lorsqu’on joue un morceau, son titre, le nom du groupe et le temps restant sont affichés sur l’affichage LED, si la place manque, le texte défile de droite à gauche.
+*Possibilité de jouer une trentaine de morceaux différents.
+* Mise en veille du C.H.I.P. afin de réduire la consommation énergétique sans devoir débrancher de fils.
+*Un mode "single song" où une carte est insérée, puis le morceau correspondant est joué.
+*Un mode "playlist" : les cartes sont insérées l’une après l’autre et les morceaux sont joués à tour de rôle.
+
+!!!1.1 Principes et technologies
+Lors du projet hiver, la partie ''hardware'' a été fortement développée, pour cette 
+partie printemps, ce sera le ''software'' qui sera le plus mis en avant.
+
+Pour cela, nous utilisons un atMega32U4 (le micro-contrôleur de la majorité des Arduino), 
+mais nous nécessitions aussi quelque chose de plus puissant et qui permette notamment de jouer des fichiers MP3.
+Nous utilisons donc un C.H.I.P, une sorte de mini-ordinateur (NUUUP). Celui-ci est avantageux pour sa sortie jack, 
+sa mémoire importante (3Gb) et son Wi-Fi incorporé $$chip reference$$. 
+
+!!!1.2 Librairies

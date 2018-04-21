@@ -58,6 +58,9 @@ mais nous nécessitions aussi quelque chose de plus puissant et qui permette not
 Nous utilisons donc un C.H.I.P, une sorte de mini-ordinateur (NUUUP). Celui-ci est avantageux pour sa sortie jack, 
 sa mémoire importante (3Gb) et son Wi-Fi incorporé $$chip reference$$. 
 
+!!!1.2 Librairies
+
+
 !!!!2. Matériel
 
 Ci-dessous est listé tout le matériel nécessaire à l'obtention de la valise lecteur MP3 complète.
@@ -96,15 +99,52 @@ __Outils :__
 *1 mèche M5
 *1 mèche M15
 *1 tournevis cruciforme
-*1 découpeuse laser qui puisse au moins découper des surfaces 500 par 40mm
+*1 découpeuse laser qui puisse au moins découper des surfaces de 500 par 400mm
 
 
 
 !!!!3 Méthode
-!!!3.1 Finalisation et assemblage du hardware
+!!!3.1 Finalisation et assemblage du ''hardware''
+Au début de ce projet, toutes les parties principales étaient réunies : les circuits électroniques avaient tous été 
+soudés et testés, les haut-parleurs étaient à disposition et le support énergétique aussi. Pourtant, il fallait 
+réaliser le support qui permettrait de soutenir tous ces éléments. Celui-ci est constitué de deux parties: une plaque 
+permet de rassembler les 16 modules de l'affichage LED, une autre les 5 haut-parleurs, l'amplificateur et le lecteur 
+de cartes. Pour modéliser ces plaques, le programme FreeCAD a été utilisé $$ref freecad$$. Ce programme permet de faire 
+à la fois du design 2 et 3D, est open-source et permet de réaliser des modèles complètement paramètrés, ce qui signifie 
+que les dimensions du modèles peuvent être modifiées très facilement. Les modèles se trouvent dans stea-mp-unk-3/freecad.
+
+AJOUTER IMAGE FREECAD
+
+Afin de réaliser les modèles, nous avons procédé de deux façons différentes pour connaître les dimensions exactes des objets 
+à placer sur ceux-ci. Pour les plaques, nous avons exporté leur dimensions directement depuis ''Eagle''. Pour les trous dans 
+lesquels rentrent les haut-parleurs, nous avons réalisé les mesures en utilisant un pied à coulisse, qui a permis une précision 
+suffisante. Néanmoins, les trous pour les fixer ont été réalisés après coup avec une visseuse, une mèche M3 pour les petits 
+haut-parleurs et une mèche M4 pour le grand (subwoofer).
+
+Une fois les modèles terminés, ils ont été exportés au format .dxf. En effet, c'est un des formats acceptés par la découpeuse 
+laser que nous avons utilisée pour réaliser les modèles. Ils ont été découpés dans du MDF 3mm, qui est un matériaux peu cher (5fr/m²) 
+et suffisemment résistant pour cette application. Ensuite, toutes les parties ont été fixées sur les plaques avec les vis en nylon M3 
+et les écrous, excepté le subwoofer qui a été fixé avec les vis M4. Pour terminer l'affichage LED, les 16 modules ont été connectés 
+entre eux en utilisant les fils de cuivre. Quatre connections devaient être faites : SDA (fil de données de l'I2C), SCL (horloge de l'I2C), 
+GND (terre) et +12V (alimentation). Pour les modules côte à côte, des petits bout (<1cm) de cuivre dénudé ont été utilisés. Pour connecter 
+les lignes, par contre, ce sont des morceaux plus longs de fil non dénudé (pour éviter les courts-circuits) qui ont été soudés. Pour l'autre 
+plaque, les haut-parleurs les plus petits ont été soudés en parallèle l'un à l'autre avant d'être reliés à l'amplificateur, le subwoofer, quand à lui, y a été directement connecté. Ces connections consistent en deux fils : une terre et un signal d'excitation. 
+
+AJOUTER IMAGE ledDisplay
+AJOUTER IMAGE LOUDSPEAKERS
+
+Une fois ces plaques terminées, elles ont été testées. Pour tester l'affichage LED, le même système a été utilisé que pour tester les modules séparément : un arduino, ayant une terre commune avec l'afficheur, qui sort les fils SCL et SDA et une alimentation qui offre la terre commune et le +12V. Les quatre fils ont alors juste été connectés à l'afficheur et le programme ''stea-mp-unk-3/arduino/ledDisplay/segmentsTestAll'' a été utilisé.
+
+Afin de terminer l'assemblage du matériel, il a d'a
 
 !!!3.2 Programmation
-!3.2.1
+
+
+!!3.2.1 Arduino
+
+!!3.2.2 Javascript
+
+
 
 !!!!3. Résultats
 

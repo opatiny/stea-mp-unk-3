@@ -1,0 +1,10 @@
+!!!!!stea-mp-unk-3 : Un lecteur MP3 dans un style steampunk
+
+Ce projet fait office de suite au projet hiver. L'objectif est de terminer le lecteur MP3 steampunk que 
+nous avons entrepris pendant ces premiers mois. À la fin de ce cette première partie, nous avions réalisé,
+produit, soudé et testé les circuits électroniques nécessaires au fonctionnement de notre player MP3. 
+Divers programmes de test en Arduino avaient aussi été écrits afin de vérifier le fonctionnement des 
+différentes parties des plaques. À présent, nous procédons à l'assemblage du ''hardware'' et à la 
+programmation en soi.
+
+Ce projet a été réalisé par Océane PATINY.
