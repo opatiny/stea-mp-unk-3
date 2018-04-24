@@ -41,9 +41,15 @@ hiver qu'on trouve [ici|https://oci.gyre.ch/blog/?post/2018/02/01/18H-patiny|]$$
 Lors du projet hiver, la partie ''hardware'' a été fortement développée, pour cette 
 partie printemps, ce sera le ''software'' qui sera le plus mis en avant.
 
-Ce projet est basé sur deux micro-contrôleurs: un atMega32U4 (le micro-contrôleur de la majorité des Arduino) et un C.H.I.P., qui est davantage un micro-ordinateur. L'atMega32U4 sert à: il est l'entité intelligente de cardReader et sert donc à scanner la carte perforée qui y est insérée pour obtenir son identifiant, mesurer la température, mesurer la luminosité et enfin, stocker le mode du bouton 3 positions.
+Ce projet est basé sur deux micro-contrôleurs : un atMega32U4 (le micro-contrôleur de la majorité des Arduino) et un C.H.I.P., qui est davantage un micro-ordinateur. L'atMega32U4 sert à produire des données qui seront ensuite récupérées par le C.H.I.P.: il est l'entité intelligente de ''cardReader'' et sert donc à scanner la carte perforée qui y est insérée pour obtenir son identifiant, mesurer la température, mesurer la luminosité et enfin, stocker le mode du bouton 3 positions. Il stocke tous ces paramètres dans sa mémoire et les met à jour à une fréquence définie dans le code, qui peut différer selon les paramètres. Lors de cette partie, le problème principal a été que le micro-contrôleur doit effectuer de nombreuses tâches simultanément, c'est ce qu'on appelle du ''multithread'', c'est-à-dire l'exécution simultanée de plusieurs programmes, les ''thread''. Or, ce procédé requière plusieurs cores, mais l'atMega32U4 n'en a qu'un seul. Par conséquent, un procédé un peu différent a du être différent: le temps d'utilisation du core a été réparti selon la priorité des programmes, on nomme alors cela ''parathread''. Pour réussir à faire cela, nous avons récupéré, puis modifié le code arduino d'un projet existant : un spectrophotomètre open-source dont on trouve la page Github [ici|https://github.com/Hackuarium/simple-spectro/tree/master/arduino/SimpleSpectro]$$Le code récupéré est celui du commit commit 31f9d76e5fb9615eacc46422a5802c925644640f$$. Le principe est plutôt simple: une librairie Arduino, NilRTOS, permet de définir et de coordonner les ''thread''. Ci-dessous se trouve un exemple simple de multithread qui permet de faire clignoter deux LEDS à des fréquences sans diviseur commun.
 
-Ce dernier est nécessaire car il permet notamment de jouer des fichiers MP3, d'autres avantages sont sa sortie jack 1/4 pouce, sa mémoire importante (4Gb) et son Wi-Fi incorporé $$chip reference$$.  Ainsi, il a fallu établir une connection entre ces deux modules, afin de faire circuler des informations entre eux.
+SCREENSHORT BASICNIL
+
+
+Le C.H.I.P., quant à lui, est nécessaire car il permet notamment de jouer des fichiers MP3, d'autres avantages sont sa sortie jack 1/4 pouce, sa mémoire importante (4Gb) et son Wi-Fi incorporé $$chip reference$$.
+
+
+Ainsi, il a fallu établir une connection entre ces deux modules, afin de faire circuler des informations entre eux.
 
 !!!1.2 Librairies
 Lors de ce projet, deux types de librairies ont été utilisées : des librairies Arduino et les librairies Node $$definition node??!!$$. 
