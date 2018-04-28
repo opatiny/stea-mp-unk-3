@@ -5,6 +5,9 @@ Pourtant, il
 n'était composé que de 12'300 transistors (l'entité de base d'un micro-processeur), alors que l'iPhone 6, 
 en comparaison, en contient environ 1,6 milliards $$curiouDroid$$...
 
+ ((https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/.dskyAGC_m.jpg||C))
+ __Schéma 1 : le DSKY (Display and Keyboard) de l'AGC des fusées Apollo. $$__
+
 Ainsi, le matériel électronique et les ressources informatiques nécessaires à l'utilisation de celui-ci deviennent 
 toujours plus accessibles et performantes. Cela a des conséquences très simples : au lieu d'être seulement utilisées 
 par des scientifiques 
@@ -17,7 +20,7 @@ des ventilateurs, des lasers et/ou tout un panel de capteurs (température, humi
 Une rapide recherche dans un navigateur internet permet de prendre conscience du nombre de projets existants, 
 qui semble croître exponentiellement. Par exemple, rien que pour le type de micro-contôleur Arduino, qui est 
 une plateforme très appréciée car facile à utiliser tant pour faire des prototypes que des produits finis, 
-on peut trouver des pages internet qui listent plusieurs centaines de projets qui l'utilisent $$ $$ $$ $$.
+on peut trouver des pages internet qui listent plusieurs centaines de projets qui l'utilisent $$130+ Arduino Projects with Source Code, Schematics &amp; Complete DIY Explanation. (n.d.). Retrieved April 18, 2018, from https://circuitdigest.com/arduino-projects$$ $$200+ Arduino Projects List For Final Year Students. (n.d.). Retrieved April 18, 2018, from https://www.electronicshub.org/arduino-project-ideas/$$.
 
 Ce projet s'inscrit dans ce mouvement de créations électroniques réalisées par des personnes sans formation 
 dans ce domaine. Ce que l'on veut dévelloper n'a pas réellement d'intérêt pratique, mais sa fabrication nous 
@@ -33,7 +36,7 @@ hiver qu'on trouve [ici|https://oci.gyre.ch/blog/?post/2018/02/01/18H-patiny|]$$
 *Lorsqu’une carte perforée est introduite dans le lecteur de cartes, le morceau correspondant doit être joué.
 *Lorsqu’on joue un morceau, son titre, le nom du groupe et le temps restant sont affichés sur l’affichage LED, si la place manque, le texte défile de droite à gauche.
 *Possibilité de jouer une trentaine de morceaux différents.
-* Mise en veille du C.H.I.P. afin de réduire la consommation énergétique sans devoir débrancher de fils.
+*Mise en veille du CHIP afin de réduire la consommation énergétique sans devoir débrancher de fils.
 *Un mode "single song" où une carte est insérée, puis le morceau correspondant est joué.
 *Un mode "playlist" : les cartes sont insérées l’une après l’autre et les morceaux sont joués à tour de rôle.
 
@@ -41,15 +44,12 @@ hiver qu'on trouve [ici|https://oci.gyre.ch/blog/?post/2018/02/01/18H-patiny|]$$
 Lors du projet hiver, la partie ''hardware'' a été fortement développée, pour cette 
 partie printemps, ce sera le ''software'' qui sera le plus mis en avant.
 
-Ce projet est basé sur deux micro-contrôleurs : un atMega32U4 (le micro-contrôleur de la majorité des Arduino) et un C.H.I.P., qui est davantage un micro-ordinateur. L'atMega32U4 sert à produire des données qui seront ensuite récupérées par le C.H.I.P.: il est l'entité intelligente de ''cardReader'' et sert donc à scanner la carte perforée qui y est insérée pour obtenir son identifiant, mesurer la température, mesurer la luminosité et enfin, stocker le mode du bouton 3 positions. Il stocke tous ces paramètres dans sa mémoire et les met à jour à une fréquence définie dans le code, qui peut différer selon les paramètres. Lors de cette partie, le problème principal a été que le micro-contrôleur doit effectuer de nombreuses tâches simultanément, c'est ce qu'on appelle du ''multithread'', c'est-à-dire l'exécution simultanée de plusieurs programmes, les ''thread''. Or, ce procédé requière plusieurs cores, mais l'atMega32U4 n'en a qu'un seul. Par conséquent, un procédé un peu différent a du être différent: le temps d'utilisation du core a été réparti selon la priorité des programmes, on nomme alors cela ''parathread''. Pour réussir à faire cela, nous avons récupéré, puis modifié le code arduino d'un projet existant : un spectrophotomètre open-source dont on trouve la page Github [ici|https://github.com/Hackuarium/simple-spectro/tree/master/arduino/SimpleSpectro]$$Le code récupéré est celui du commit commit 31f9d76e5fb9615eacc46422a5802c925644640f$$. Le principe est plutôt simple: une librairie Arduino, NilRTOS, permet de définir et de coordonner les ''thread''. Ci-dessous se trouve un exemple simple de multithread qui permet de faire clignoter deux LEDS à des fréquences sans diviseur commun.
+Ce projet est basé sur deux micro-contrôleurs : un ATmega32U4 (le micro-contrôleur de la majorité des Arduino) et un CHIP, qui est davantage un micro-ordinateur. L'atMega32U4 sert à produire des données qui seront ensuite récupérées par le CHIP: il est l'entité intelligente de ''cardReader'' et sert donc à scanner la carte perforée qui y est insérée pour obtenir son identifiant, mesurer la température, mesurer la luminosité et enfin, stocker le mode du bouton 3 positions.
+Le CHIP, quant à lui, est nécessaire car il permet notamment de jouer des fichiers MP3, d'autres avantages sont sa sortie jack 1/4 pouce, sa mémoire importante (4Gb) et son Wi-Fi incorporé $$chip reference$$.
 
-SCREENSHORT BASICNIL
+Une partie majeure du projet est d'établir une connection entre ces deux modules, ainsi que l'afficheur LED, pour permettre de faire circuler des informations entre eux. Pour cela, nous utilisons le protocole de communication I2C (Inter-Integrated Circuit). Ce protocole est standard pour énormément de micro-contrôleurs et de prédiphériques et il permet à un ''master'' de s'adresser jusqu'à 1008 ''slaves'' sur un seul bus. Le protocole utilise deux fils: SDA (fil de données de l'I2C) et SCL (horloge de l'I2C).
 
-
-Le C.H.I.P., quant à lui, est nécessaire car il permet notamment de jouer des fichiers MP3, d'autres avantages sont sa sortie jack 1/4 pouce, sa mémoire importante (4Gb) et son Wi-Fi incorporé $$chip reference$$.
-
-
-Ainsi, il a fallu établir une connection entre ces deux modules, afin de faire circuler des informations entre eux.
+Dans notre projet, nous avons un ''master'', le CHIP, et 17 ''slaves'', l'ATmega32U4 et les 16 PCA9685 qui se trouvent sur les modules de l'afficheur LED.
 
 !!!1.2 Librairies
 Lors de ce projet, deux types de librairies ont été utilisées : des librairies Arduino et les librairies Node $$definition node??!!$$. 

@@ -1,10 +1,10 @@
 
-!!!!3 Méthode
+!!!!3. Méthode
 !!!3.1 Adressage de l'afficheur LED et soudure des cartes perforées
-Toutes les plaques de l'affichage LED ont été soudées entre la fin du projet hiver et le début du projet printemps. Néanmoins, il restait encore une étape pour qu'elles soient entièrement terminées : leur attribuer à chacune une addresse I2C en court-circuitant les quatre jumpers à l'arrière. À cause des spécifications du composant I2C de ces plaques (le PCA9685) $$ref pca address page$$, le premier bit de l'adresse est forcément à 1, et nous avons décidé de placer les trois suivantes à 0. Ainsi, toutes nos adresses sont de la forme:
+Toutes les plaques de l'afficheur LED ont été soudées entre la fin du projet hiver et le début du projet printemps. Néanmoins, il restait encore une étape pour qu'elles soient entièrement terminées : leur attribuer à chacune une addresse I2C en court-circuitant les quatre jumpers à l'arrière. À cause des spécifications du composant I2C de ces plaques (le PCA9685) $$ref pca address page$$, le premier bit de l'adresse est forcément à 1, et nous avons décidé de placer les trois suivantes à 0. Ainsi, toutes nos adresses sont de la forme:
  @@0b1000xxxx@@
 
-En second lieu, il était encore nécessaire de souder des cartes perforées, pour pouvoir les attribuer à des morceaux de musique ou à des playlists. Nous avons fait cela aléatoirement, en prenant toutefois garde à deux aspects : ne pas faire accidentellement deux cartes identique et ne pas relier tous les pins entre eux (la carte ne pourrait alors pas être détectée). Ensuite, nous avons inséré les cartes dans cardReader afin d'obtenir leur code unique (résultat du hash 32 bits élaboré au projet hiver) sous forme de 8 caractères en hexadécimal. Nous imprimons ce code et le collons au dos des cartes afin de pouvoir les distinguer. Une liste des codes unique a été effectuée, avec les morceaux qui leurs sont attribués (LIEN).
+En second lieu, il était encore nécessaire de souder des cartes perforées pour pouvoir les attribuer à des morceaux de musique ou à des playlists. Nous avons fait cela aléatoirement, en prenant toutefois garde à deux aspects : ne pas faire accidentellement deux cartes identique et ne pas relier tous les pins entre eux (la carte ne pourrait alors pas être détectée). Ensuite, nous avons inséré les cartes dans cardReader afin d'obtenir leur code unique (résultat du hash 32 bits élaboré au projet hiver) sous forme de 8 caractères en hexadécimal. Nous imprimons ce code et le collons au dos des cartes afin de pouvoir les distinguer. Une liste des codes unique a été effectuée, avec les morceaux qui leurs sont attribués (on trouve cette liste [ici|https://drive.google.com/open?id=1YJuBsfl1E_AifsTRFOtuGRGBT_UB18SHuMxXE-PrzUY]).
 
 IMAGE EXEMPLE CARTE PERF
 
@@ -13,7 +13,7 @@ IMAGE EXEMPLE CARTE PERF
 Au début de ce projet, toutes les parties principales étaient réunies : les circuits électroniques avaient tous été 
 soudés et testés, les haut-parleurs étaient à disposition et le support énergétique aussi. Pourtant, il fallait 
 réaliser le support qui permettrait de soutenir tous ces éléments. Celui-ci est constitué de deux parties: une plaque 
-permet de rassembler les 16 modules de l'affichage LED, une autre les 5 haut-parleurs, l'amplificateur et le lecteur 
+permet de rassembler les 16 modules de l'afficheur LED, une autre les 5 haut-parleurs, l'amplificateur et le lecteur 
 de cartes. Pour modéliser ces plaques, le programme FreeCAD a été utilisé $$ref freecad$$. Ce programme permet de faire 
 à la fois du design 2 et 3D, est open-source et permet de réaliser des modèles complètement paramètrés, ce qui signifie 
 que les dimensions du modèles peuvent être modifiées très facilement. Les modèles se trouvent dans stea-mp-unk-3/freecad.
@@ -27,18 +27,20 @@ suffisante. Néanmoins, les trous pour les fixer ont été réalisés après cou
 haut-parleurs et une mèche M4 pour le grand (subwoofer).
 
 Une fois les modèles terminés, ils ont été exportés au format .dxf. En effet, c'est un des formats acceptés par la découpeuse 
-laser que nous avons utilisée pour réaliser les modèles. Ils ont été découpés dans du MDF 3mm, qui est un matériaux peu cher (5fr/m²) 
+laser que nous avons utilisée pour réaliser les modèles. Ils ont été découpés dans du MDF 3mm, qui est un matériau peu cher (5fr/m²) 
 et suffisemment résistant pour cette application. Ensuite, toutes les parties ont été fixées sur les plaques avec les vis en nylon M3 
-et les écrous, excepté le subwoofer qui a été fixé avec les vis M4. Pour terminer l'affichage LED, les 16 modules ont été connectés 
-entre eux en utilisant les fils de cuivre. Quatre connections devaient être faites : SDA (fil de données de l'I2C), SCL (horloge de l'I2C), 
+et les écrous, excepté le subwoofer qui a été fixé avec les vis M4. Pour terminer l'afficheur LED, les 16 modules ont été connectés 
+entre eux en utilisant les fils de cuivre. Quatre connections devaient être faites : SDA, SCL, 
 GND (terre) et +12V (alimentation). Pour les modules côte à côte, des petits bout (<1cm) de cuivre dénudé ont été utilisés. Pour connecter 
-les lignes, par contre, ce sont des morceaux plus longs de fil non dénudé (pour éviter les courts-circuits) qui ont été soudés. Pour l'autre 
-plaque, les haut-parleurs les plus petits ont été soudés en parallèle l'un à l'autre avant d'être reliés à l'amplificateur, le subwoofer, quand à lui, y a été directement connecté. Ces connections consistent en deux fils : une terre et un signal d'excitation. 
+les lignes entre elles, par contre, ce sont des morceaux plus longs de fil non dénudé (pour éviter les courts-circuits) qui ont été soudés. Pour l'autre 
+plaque, les haut-parleurs les plus petits ont été soudés en parallèle l'un à l'autre avant d'être reliés à l'amplificateur. Le subwoofer, quand à lui, y a été directement connecté. Ces connections consistent en deux fils : une terre et un signal d'excitation. 
 
 AJOUTER IMAGE ledDisplay
 AJOUTER IMAGE LOUDSPEAKERS
 
-Une fois ces plaques terminées, elles ont été testées. Pour tester l'affichage LED, le même système a été utilisé que pour tester les modules séparément : un arduino, ayant une terre commune avec l'afficheur, qui sort les fils SCL et SDA et une alimentation qui offre la terre commune et le +12V. Les quatre fils ont alors juste été connectés à l'afficheur et le programme ''stea-mp-unk-3/arduino/ledDisplay/segmentsTestAll'' a été utilisé. Pour tester l'amplificateur, il a juste été relié à une alimentation 12V standard et à un telephone portable depuis lequel un fichier MP3 était joué. Il fonctionne et les haut-parleurs aussi, néanmoins, le subwoofer a initialement émi un son vibrant désagréable. Pour améliorer cela, nous ...
+Une fois ces plaques terminées, elles ont été testées. Pour tester l'afficheur LED en entier, le même système a été utilisé que pour tester les modules séparément : un arduino, ayant une terre commune avec l'afficheur, qui sort les fils SCL et SDA et une alimentation qui procure la terre commune et le +12V. Ces quatre fils ont été connectés à l'afficheur et le programme ''stea-mp-unk-3/arduino/ledDisplay/segmentsTestAll'' a été utilisé (il fait clignoter tous les segments de l'afficheur l'un après l'autre). Ce test est visible à la Vidéo **segmentsTestAll**. Pour tester l'amplificateur, celui-ci a juste été relié à une alimentation 12V standard à l'aide du câble approprié et à un téléphone portable depuis lequel un fichier MP3 était joué. Il fonctionne et les haut-parleurs aussi, néanmoins, le subwoofer a initialement émi un son vibrant désagréable. Pour améliorer cela, il a été surélevé au moyen d'entretoises.
+
+AJOUTER VIDÉO SEGMENTSTESTALL
 
 Afin de terminer l'assemblage du matériel, il a d'a
 
@@ -46,5 +48,9 @@ Afin de terminer l'assemblage du matériel, il a d'a
 
 
 !!3.2.1 Arduino
+L'ATmega32U4, le micro-contrôleur de ''cardReader'', est aussi celui utilisé dans les Arduinos. Par conséquent, on peut utiliser leur plateforme de programmation, qui est open-source, afin d'écrire le code qu'il doit exécuter (on peut télécharger ce programme [ici|https://www.arduino.cc/en/Main/Software]).
+ Il stocke tous ces paramètres dans sa mémoire et les met à jour à une fréquence définie dans le code, qui peut différer selon les paramètres. Lors de cette partie, le problème principal a été que le micro-contrôleur doit effectuer de nombreuses tâches simultanément, c'est ce qu'on appelle du ''multithread'', c'est-à-dire l'exécution simultanée de plusieurs programmes, les ''thread''. Or, ce procédé requière plusieurs cores, mais l'atMega32U4 n'en a qu'un seul. Par conséquent, un procédé un peu différent a dû être différent: le temps d'utilisation du core est réparti selon la priorité des programmes, on nomme alors cela ''parathread''. Pour réussir à faire cela, nous avons récupéré, puis modifié le code arduino d'un projet existant : un spectrophotomètre open-source dont on trouve la page Github [ici|https://github.com/Hackuarium/simple-spectro/tree/master/arduino/SimpleSpectro]$$Le code récupéré est celui du commit 31f9d76e5fb9615eacc46422a5802c925644640f$$. Le principe est plutôt simple: une librairie Arduino, NilRTOS, permet de définir et de coordonner les ''thread''. Ci-dessous se trouve un exemple simple de multithread qui permet de faire clignoter deux LEDS à des fréquences sans diviseur commun.
+
+SCREENSHOT BASICNIL
 
 !!3.2.2 Javascript
