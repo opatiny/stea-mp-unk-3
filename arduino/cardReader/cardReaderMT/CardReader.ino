@@ -16,7 +16,7 @@ NIL_THREAD(ThreadCardReader, arg) {
 
   setParameter(PARAM_SCAN_ENABLED, 1);
 
-nilThdSleepMilliseconds(1000);
+  nilThdSleepMilliseconds(1000);
 
   while (true) {
     long key = 0;
@@ -58,6 +58,9 @@ nilThdSleepMilliseconds(1000);
           break;
         case -1:
           key = 0x00000002;
+          break;
+        case -2:
+          key = 0x00000003;
           break;
       }
     }

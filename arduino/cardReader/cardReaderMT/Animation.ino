@@ -31,12 +31,15 @@ NIL_THREAD(ThreadAnimation, arg) {
     int read2 = analogRead(A5);
     digitalWrite(A0, HIGH);
 
-    if (read1 > 100 && read1 < 800) {
-
+    if ((read1 > 100 && read1 < 800) || (read2 > 100 && read2 < 800)) {
       Timer3.attachInterrupt(refresh); // the function attached to timer3 will be executed like an interrupt (delay is defined )
-      if (read2 > 100 && read2 < 800) {
-        setParameter(PARAM_SCAN_ENABLED, -1);
+
+      if ((read1 > 100 && read1 < 800) && (read2 > 100 && read2 < 800)) {
+        setParameter(PARAM_SCAN_ENABLED, -1); // the values of PARAM_SCAN_ENABLED allow to attribute special keys to the led cards (used in CardReader)
         squarePlatinium();
+      } else if (read2 > 100 && read2 < 800) {
+        setParameter(PARAM_SCAN_ENABLED, -2);
+        animRainbow();
       } else {
         setParameter(PARAM_SCAN_ENABLED, 0);
         squareGold();
@@ -73,6 +76,20 @@ void squareGold() {
   square1(1);
   nilThdSleepMilliseconds(delayTime);
   off();
+}
+
+void animRainbow() {
+  int delayTime = 500;
+  S();
+  nilThdSleepMilliseconds(delayTime);
+  O();
+  nilThdSleepMilliseconds(delayTime);
+  W();
+  nilThdSleepMilliseconds(delayTime);
+  A();
+  nilThdSleepMilliseconds(delayTime);
+  off();
+  nilThdSleepMilliseconds(delayTime);
 }
 
 void squarePlatinium() {
@@ -184,9 +201,49 @@ void filedSquare5(byte value1, int value2) {
   }
 }
 
+void S() {
+  off();
+  for (byte col = 0; col < SIZE; col++) {
+    matrix[0][col] = true;
+    matrix[SIZE - 3][col] = true;
+    matrix[SIZE - 1][col] = true;
+  }
+  matrix[1][4] = true;
+  matrix[3][0] = true;
+}
+
+void O() {
+  off();
+  for (byte col = 0; col < SIZE; col++) {
+    matrix[0][col] = true;
+    matrix[SIZE - 1][col] = true;
+    matrix[col][0] = true;
+    matrix[col][SIZE - 1] = true;
+  }
+}
+
+void W() {
+  off();
+  for (byte col = 0; col < SIZE; col++) {
+    matrix[SIZE - 1][col] = true;
+    matrix[col][0] = true;
+    matrix[col][SIZE - 3] = true;
+    matrix[col][SIZE - 1] = true;
+  }
+}
+
+
+void A() {
+  off();
+  for (byte col = 0; col < SIZE; col++) {
+    matrix[0][col] = true;
+    matrix[SIZE - 3][col] = true;
+    matrix[col][0] = true;
+    matrix[col][SIZE - 1] = true;
+  }
+}
 
 void refresh() {
-
   for (byte col = 0; col < SIZE; col++) {
     for (byte row = 0; row < SIZE; row++) {
       pinMode(rows[row], OUTPUT);
