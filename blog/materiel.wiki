@@ -7,7 +7,7 @@ __Électronique :__
 *1 circuit imprimé ''cardReader'' soudé
 *Autant de cartes perforées que de morceaux de musique désirés, soudées de façon unique
 *1 C.H.I.P.
-*1 cable mini USB (pour le chip)
+*1 cable mini USB (pour le CHIP)
 *1 cable micro USB (pour ''cardReader'')
 *50cm de fil de cuivre dénudé (diamètre environ 1mm)
 *1m de fil de cuivre non dénudé (diamètre environ 2mm)
@@ -16,7 +16,7 @@ __Électronique :__
 *4 haut-parleurs
 *1 ''subwoofer''
 *1 bloc d'alimentation à tension de sortie variable (5 à 12 V)
-*1 amplificateur 
+*1 amplificateur (TPA3116D2)
 
 __Général :__
 *1 vieille valise en cuir (dimensions intérieures : 450x315x100mm)

@@ -6,7 +6,7 @@ n'était composé que de 12'300 transistors (l'entité de base d'un micro-proces
 en comparaison, en contient environ 1,6 milliards $$curiouDroid$$...
 
  ((https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/.dskyAGC_m.jpg||C))
- __Schéma 1 : le DSKY (Display and Keyboard) de l'AGC des fusées Apollo. $$__
+ __Schéma 1 : Le DSKY (Display and Keyboard) de l'ordinateur central des fusées Apollo. $$Computers in Spaceflight: The NASA Experience - Chapter Two  - Computers On Board The Apollo Spacecraft. (n.d.). Retrieved April 18, 2018, from https://history.nasa.gov/computers/Ch2-4.html$$__
 
 Ainsi, le matériel électronique et les ressources informatiques nécessaires à l'utilisation de celui-ci deviennent 
 toujours plus accessibles et performantes. Cela a des conséquences très simples : au lieu d'être seulement utilisées 
@@ -47,7 +47,10 @@ partie printemps, ce sera le ''software'' qui sera le plus mis en avant.
 Ce projet est basé sur deux micro-contrôleurs : un ATmega32U4 (le micro-contrôleur de la majorité des Arduino) et un CHIP, qui est davantage un micro-ordinateur. L'atMega32U4 sert à produire des données qui seront ensuite récupérées par le CHIP: il est l'entité intelligente de ''cardReader'' et sert donc à scanner la carte perforée qui y est insérée pour obtenir son identifiant, mesurer la température, mesurer la luminosité et enfin, stocker le mode du bouton 3 positions.
 Le CHIP, quant à lui, est nécessaire car il permet notamment de jouer des fichiers MP3, d'autres avantages sont sa sortie jack 1/4 pouce, sa mémoire importante (4Gb) et son Wi-Fi incorporé $$chip reference$$.
 
-Une partie majeure du projet est d'établir une connection entre ces deux modules, ainsi que l'afficheur LED, pour permettre de faire circuler des informations entre eux. Pour cela, nous utilisons le protocole de communication I2C (Inter-Integrated Circuit). Ce protocole est standard pour énormément de micro-contrôleurs et de prédiphériques et il permet à un ''master'' de s'adresser jusqu'à 1008 ''slaves'' sur un seul bus. Le protocole utilise deux fils: SDA (fil de données de l'I2C) et SCL (horloge de l'I2C).
+Une partie majeure du projet est d'établir une connection entre ces deux modules, ainsi que l'afficheur LED, pour permettre de faire circuler des informations entre eux. Pour cela, nous utilisons le protocole de communication I2C (Inter-Integrated Circuit). Ce protocole est standard pour énormément de micro-contrôleurs et de prédiphériques et il permet à un ''master'' de s'adresser jusqu'à 1008 ''slaves'' sur un seul bus. Le protocole utilise deux fils: SDA (fil de données de l'I2C) et SCL (horloge de l'I2C). Aussi, c'est toujours le maître qui s'adresse aux esclaves, il peut ne communiquer qu'avec un seul module à la fois. Les paquets de données I2C sont formés deux parties principales: une adresse (7 bits) et des données (8 bits). Le détail des paquets est représenté ci-dessous.
+
+ ((https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/.i2cProtocol_m.png||C))
+ __Schéma 1 : Structure des paquets I2C. $$__
 
 Dans notre projet, nous avons un ''master'', le CHIP, et 17 ''slaves'', l'ATmega32U4 et les 16 PCA9685 qui se trouvent sur les modules de l'afficheur LED.
 
@@ -57,15 +60,17 @@ En général, ces librairies ont permis le fonctionnement de modules I2C (comme 
 
 !!1.2.1 Librairies Arduino
 Voici les librairies utilisées dans la partie Arduino du ''software'' :
-*pca9685 :
-*OneWire :
-*NilRTOS :
-*TimerThree :
+*__pca9685__ :
+*__OneWire__ :
+*__NilRTOS__ :
+*__TimerThree__ :
 
 !!1.2.2 Librairies Node
 Voici les librairies utilisées dans la partie JavaScript du ''software'' :
-*debug :
-*delay :
-*mplayer-as-promised :
-
+*__debug__ :
+*__delay__ :
+*__mplayer-as-promised__ :
+*__i2c-bus__ :
+*__child_process__ : exécute des scripts bash depuis un programme JavaScript (exec)
+*__spawn-promise__ : librairie qui adapte child_process.spawn pour utiliser des ''promise''
 
