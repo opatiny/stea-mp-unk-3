@@ -45,32 +45,30 @@ Lors du projet hiver, la partie ''hardware'' a été fortement développée, pou
 partie printemps, ce sera le ''software'' qui sera le plus mis en avant.
 
 Ce projet est basé sur deux micro-contrôleurs : un ATmega32U4 (le micro-contrôleur de la majorité des Arduino) et un CHIP, qui est davantage un micro-ordinateur. L'atMega32U4 sert à produire des données qui seront ensuite récupérées par le CHIP: il est l'entité intelligente de ''cardReader'' et sert donc à scanner la carte perforée qui y est insérée pour obtenir son identifiant, mesurer la température, mesurer la luminosité et enfin, stocker le mode du bouton 3 positions.
-Le CHIP, quant à lui, est nécessaire car il permet notamment de jouer des fichiers MP3, d'autres avantages sont sa sortie jack 1/4 pouce, sa mémoire importante (4Gb) et son Wi-Fi incorporé $$chip reference$$.
+Le CHIP, quant à lui, est nécessaire car il permet notamment de jouer des fichiers MP3, d'autres avantages sont sa sortie jack 1/4 de pouce, sa mémoire importante (4Gb) et son Wi-Fi incorporé $$chip reference$$.
 
-Une partie majeure du projet est d'établir une connection entre ces deux modules, ainsi que l'afficheur LED, pour permettre de faire circuler des informations entre eux. Pour cela, nous utilisons le protocole de communication I2C (Inter-Integrated Circuit). Ce protocole est standard pour énormément de micro-contrôleurs et de prédiphériques et il permet à un ''master'' de s'adresser jusqu'à 1008 ''slaves'' sur un seul bus. Le protocole utilise deux fils: SDA (fil de données de l'I2C) et SCL (horloge de l'I2C). Aussi, c'est toujours le maître qui s'adresse aux esclaves, il peut ne communiquer qu'avec un seul module à la fois. Les paquets de données I2C sont formés deux parties principales: une adresse (7 bits) et des données (8 bits). Le détail des paquets est représenté ci-dessous.
+Une partie majeure du projet est d'établir une connection entre ces deux modules, ainsi que l'afficheur LED, pour permettre de faire circuler des informations entre eux. Pour cela, nous utilisons le protocole de communication I2C (Inter-Integrated Circuit). Ce protocole est standard pour énormément de micro-contrôleurs et de prériphériques et il permet à un ''master'' de s'adresser jusqu'à 1008 ''slaves'' sur un seul bus. Le protocole utilise deux fils: SDA (fil de données de l'I2C) et SCL (horloge de l'I2C). Aussi, c'est toujours le maître qui s'adresse aux esclaves, il peut ne communiquer qu'avec un seul module à la fois. Les paquets de données I2C sont formés deux parties principales: une adresse (7 bits) et des données (8 bits). Le détail des paquets est représenté ci-dessous.
 
  ((https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/.i2cProtocol_m.png||C))
  __Schéma 1 : Structure des paquets I2C. $$__
 
-Dans notre projet, nous avons un ''master'', le CHIP, et 17 ''slaves'', l'ATmega32U4 et les 16 PCA9685 qui se trouvent sur les modules de l'afficheur LED.
+Dans notre projet, nous avons un ''master'', le CHIP, et 17 ''slaves'', l'ATmega32U4 et les 16 PCA9685 qui se trouvent sur les modules de l'afficheur LED. La particularité de cardReader est que nous avons dû en faire un esclave I2C et donc superviser la communication avec ce protocole à un bas niveau. Cela est expliqué dans la partie ''Méthodes''.
 
 !!!1.2 Librairies
 Lors de ce projet, deux types de librairies ont été utilisées : des librairies Arduino et les librairies Node $$definition node??!!$$. 
-En général, ces librairies ont permis le fonctionnement de modules I2C (comme le PCA9685), l'utilisation de protocoles de communication (serial) et de permettre certaines fonctions dans la partie JavaScript du code (comme avoir des délais).
+En général, ces librairies ont permis le fonctionnement de modules I2C (comme le PCA9685), l'utilisation de protocoles de communication (serial) et de permettre certaines fonctionalités dans la partie JavaScript du code (comme avoir des délais).
 
 !!1.2.1 Librairies Arduino
 Voici les librairies utilisées dans la partie Arduino du ''software'' :
-*__pca9685__ :
-*__OneWire__ :
-*__NilRTOS__ :
-*__TimerThree__ :
+*__pca9685__ : contrôle du composant homonyme en I2C.
+*__Wire__ : supervision des communications en I2C.
+*__NilRTOS__ : multithread de l'Arduino.
 
 !!1.2.2 Librairies Node
 Voici les librairies utilisées dans la partie JavaScript du ''software'' :
-*__debug__ :
-*__delay__ :
-*__mplayer-as-promised__ :
-*__i2c-bus__ :
-*__child_process__ : exécute des scripts bash depuis un programme JavaScript (exec)
-*__spawn-promise__ : librairie qui adapte child_process.spawn pour utiliser des ''promise''
-
+*__debug__ : messages d'erreur dans le terminal affichés selon les programmes JavaScript pour lesquels c'est demandé.
+*__delay__ : offre la possibilité de mettre des délais dans les programmes JavaScript.
+*__mplayer-as-promised__ : lancement, arrêt, reprise et temps restant d'un morceau de musique.
+*__i2c-bus__ : communication en I2C entre le CHIP et l'ATmega32U4.
+*__child_process__ : exécute des scripts bash depuis un programme JavaScript (exec).
+*__spawn-promise__ : librairie qui adapte child_process.spawn pour utiliser des ''promise''.
