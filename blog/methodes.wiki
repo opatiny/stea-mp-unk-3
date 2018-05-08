@@ -51,13 +51,25 @@ L'ATmega32U4, le micro-contrôleur de ''cardReader'', est aussi celui utilisé d
 Afin que le programme Arduino final (qu'on peut trouver [ici|https://github.com/opatiny/stea-mp-unk-3/tree/master/arduino/cardReader/cardReaderMT]) soit compréhensible et réutilisable, il a été divisé en plusieurs fichiers, chacun s'occupant d'une fonction spécifique. L'un d'eux, ''cardReaderMT/A_Parameters.ino'', permet de définir tous les paramètres qui sont utilisés dans le reste du programme. Pour définir ces paramètres, la syntaxe @@#define@@ a été utilisée. Celle-ci est pratique, car selon les paramètres définis, on peut exécuter ou non diverses parties du programme.
 
 ((https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/.testDefine_m.png||C))
- __Schéma XXX : Programme Arduino. La fonction @@hi()@@ est exécutée seulement si @@PARAMETER@@ est défini.
+ __Schéma XXX : Programme Arduino. La fonction @@hi()@@ est exécutée seulement si @@PARAMETER@@ est défini.__
 
-Il stocke tous ces paramètres dans sa mémoire et les met à jour à une fréquence définie dans le code, qui peut différer selon les paramètres. Lors de cette partie, le problème principal a été que le micro-contrôleur doit effectuer de nombreuses tâches simultanément, c'est ce qu'on appelle du ''multithread'', c'est-à-dire l'exécution simultanée de plusieurs programmes les ''threads''. Or, ce procédé requière plusieurs cores, mais l'atMega32U4 n'en a qu'un seul. Par conséquent, un procédé un peu différent a dû être différent: le temps d'utilisation du core est réparti selon la priorité des programmes, on nomme alors cela ''parathread''. Pour réussir à faire cela, nous avons récupéré, puis modifié le code arduino d'un projet existant : un spectrophotomètre open-source dont on trouve la page Github [ici|https://github.com/Hackuarium/simple-spectro/tree/master/arduino/SimpleSpectro]$$Le code récupéré est celui du commit 31f9d76e5fb9615eacc46422a5802c925644640f$$. Le principe est plutôt simple: une librairie Arduino, NilRTOS, permet de définir et de coordonner les ''threads''. Ci-dessous se trouve un exemple simple de multithread qui permet de faire clignoter deux LEDS à des fréquences sans diviseur commun.
+Il stocke tous ces paramètres dans sa mémoire et les met à jour à une fréquence définie dans le code, qui peut différer selon les paramètres. Lors de cette partie, le problème principal a été que le micro-contrôleur doit effectuer de nombreuses tâches simultanément, c'est ce qu'on appelle du ''multithread'', c'est-à-dire l'exécution simultanée de plusieurs programmes, les ''threads''. Or, ce procédé requière plusieurs cores, mais l'atMega32U4 n'en a qu'un seul. Par conséquent, un procédé un peu différent a dû être différent: le temps d'utilisation du core est réparti selon la priorité des programmes, on nomme alors cela ''parathread''. Pour réussir à faire cela, nous avons récupéré, puis modifié le code arduino d'un projet existant : un spectrophotomètre open-source dont on trouve la page Github [ici|https://github.com/Hackuarium/simple-spectro/tree/master/arduino/SimpleSpectro]$$Le code récupéré est celui du commit 31f9d76e5fb9615eacc46422a5802c925644640f$$. Le principe est plutôt simple: une librairie Arduino, NilRTOS, permet de définir et de coordonner les ''threads''. Ci-dessous se trouve un exemple simple de multithread qui permet de faire clignoter deux LEDS à des fréquences sans diviseur commun. Dans notre cas, néanmoins, chaque thread a été placé dans un programme distinct.
 
 SCREENSHOT BASICNIL
+__Programme BASICNIL : Permet de faire clignoter deux LEDs en utilisant des ''threads'' distincts__
 
-En ce qui concerne l'adaptation de ''cardReader'' en un périphérique I2C, 
+Dans notre cas, il y a six threads coordonnés dans le programme ''arduino/cardReader/cardReaderMT/Z_Start_thread.ino'', ils sont définis dans l'ordre de priorité suivant:
+#ThreadSerial : Communication sérial permettant la programmation de l'ATmega32U4 (récupéré tel quel du projet ''open-spectro'')
+#ThreadLuminosity : Mesure l'intensité lumineuse captée par la photorésistance
+#ThreadTemperature : Mesure de la température
+#ThreadCardReader : Gère le stockage du le hash correspondant à la carte introduite
+#ThreadButton : Gère l'état du bouton
+#ThreadMonitoring : ''Watchdog'' qui réinitialise le micro-contôleur après 7 secondes
+
+Le sixième ''thread'', le ''watchdog'', consiste en un compteur qui croît en permanance jusqu'à ce qu'il atteigne une certaine valeur. Dans ce cas-là, il exécute une fonction, une réinitialisation par défaut pour l'atMega32U4. L'objectif est de remettre ce compteur régulièrement à zéro dans le programme. Ainsi, s'il y a un problème et que le programme n'est pas exécuté normalement, le compteur atteint sa valeur maximale et le micro-contrôleur est réinitialisé, ce qui permet de rendre de le rendre plus autonome, puisqu'il n'est pas nécessaire de le faire manuellement $$ref uio.no$$.
+
+En ce qui concerne l'adaptation de ''cardReader'' en un esclave I2C, l'adresse 0x08 lui a été attribuée. Ainsi, on peut s'y adresser depuis le CHIP. Ensuite, la partie du programme ''stea-mp-unk-3/arduino/cardReader/cardReaderMT/WireSlave.ino'' a été écrite. Celui-ci contient trois fonctions. @@startWireSlave()@@ permet l'initialisation de l'esclave I2C. Cette fonction en requière deux autres: @@requestEvent()@@ qui sert à ...... et @@receiveEvent()@@ qui permet de ...... .
 
 !!3.2.2 JavaScript
 La partie JavaScript est le programme qui coordonne toutes les parties du projet: ''cardReader'', ''ledDisplay'' et les sorties vers l'amplificateur. 
+Afin de superviser la communication I2C du côté ''master'', 
