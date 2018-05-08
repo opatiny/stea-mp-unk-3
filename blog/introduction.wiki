@@ -23,14 +23,14 @@ une plateforme très appréciée car facile à utiliser tant pour faire des prot
 on peut trouver des pages internet qui listent plusieurs centaines de projets qui l'utilisent $$130+ Arduino Projects with Source Code, Schematics &amp; Complete DIY Explanation. (n.d.). Retrieved April 18, 2018, from https://circuitdigest.com/arduino-projects$$ $$200+ Arduino Projects List For Final Year Students. (n.d.). Retrieved April 18, 2018, from https://www.electronicshub.org/arduino-project-ideas/$$.
 
 Ce projet s'inscrit dans ce mouvement de créations électroniques réalisées par des personnes sans formation 
-dans ce domaine. Ce que l'on veut dévelloper n'a pas réellement d'intérêt pratique, mais sa fabrication nous 
+dans ce domaine. Ce que l'on veut développer n'a pas réellement d'intérêt pratique, mais sa fabrication nous 
 permet d'acquérir des connaissances et de s'amuser. Initialement, le projet est né suite à la récupération 
-imprévue d'une vieille valise à codes sur un tas de déchêts encombrants. L'objectif était alors le suivant: 
+imprévue d'une vieille valise à codes sur un tas de déchets encombrants. L'objectif était alors le suivant: 
 placer, à l'intérieur de cette valise, du matériel électronique qui permettrait de la faire fonctionner comme 
-un lecteur MP3 autonome. 
+un lecteur MP3 autonome.
 Le projet s'étant nettement précisé depuis le début, voici les objectifs que nous désirons 
 obtenir $$Les expressions "affichage led", "carte perforée" et "lecteur de cartes" sont définies dans le projet 
-hiver qu'on trouve [ici|https://oci.gyre.ch/blog/?post/2018/02/01/18H-patiny|]$$:
+hiver qu'on trouve [ici|https://oci.gyre.ch/blog/?post/2018/02/01/18H-patiny]$$:
 
 *Contrôle du volume.
 *Lorsqu’une carte perforée est introduite dans le lecteur de cartes, le morceau correspondant doit être joué.
