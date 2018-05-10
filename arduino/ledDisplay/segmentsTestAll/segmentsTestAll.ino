@@ -16,7 +16,7 @@ void setup()
 }
 
 void loop() {
-  for (int i = 0; i < 15; i++) {
+  for (int i = 0; i < 16; i++) {
     ledDriver.begin(i);  // Address pins A5-A0 set to B111000
     ledDriver.init();
 
