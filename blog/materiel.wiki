@@ -15,19 +15,27 @@ __Électronique :__
 *1.5m de fil électrique (diamètre environ 1mm)
 *4 haut-parleurs
 *1 ''subwoofer''
-*1 bloc d'alimentation à tension de sortie variable (5 à 12 V)
+*2 supports pour trois batteries 18x650
+*6 batteries 
 *1 amplificateur (TPA3116D2)
+*1 régulateur de tension 12V à 5V
+*Thermocontractible de différents diamètres
 
 __Général :__
 *1 vieille valise en cuir (dimensions intérieures : 450x315x100mm)
-*92 vis M3 par 10 en nylon noir + 92 écrous M3 en nylon noir
-*4 vis M4 par 20 en nylon noir + 4 écrous M4 en nylon noir
-*700x500mm de MDF 3mm
+*96 vis M3 par 10 en nylon noir + 96 écrous M3 en nylon noir
+*4 entretoises de 25 mm de haut
+*700x500mm de MDF (une sorte de bois composite) de 3mm d'épaisseur
+*3 plaquettes fines (environ 1mm d'épaisseur) de métal magnétisable 
+*6 aimants néodium cylindriques (1cm de diamètre x 3mm d'épaisseur)
+*1 cercle de mousse amortissante de 10cm de diamètre et 3cm d'épaisseur
+*Mousse de polystyrène extrudé rigide (max 15x15cm)
 
 __Outils :__
 *1 fer à souder
 *Fil d'étain
-*Brucelles
+*1 paire de brucelles
+*1 pince à dénuder
 *1 multimètre
 *1 alimentation variable jusqu'à 20V et 2A
 *1 ordinateur
@@ -36,5 +44,6 @@ __Outils :__
 *1 mèche M5
 *1 mèche M15
 *1 tournevis cruciforme
+*Colle chaude
 *1 découpeuse laser qui puisse au moins découper des surfaces de 500 par 400mm
 

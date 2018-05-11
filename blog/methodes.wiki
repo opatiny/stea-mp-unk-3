@@ -9,7 +9,7 @@ En second lieu, il était encore nécessaire de souder des cartes perforées pou
 IMAGE EXEMPLE CARTE PERF
 
 
-!!!3.1 Finalisation et assemblage du ''hardware''
+!!!3.2 Finalisation et assemblage du ''hardware''
 Au début de ce projet, toutes les parties principales étaient réunies : les circuits électroniques avaient tous été 
 soudés et testés, les haut-parleurs étaient à disposition et le support énergétique aussi. Pourtant, il fallait 
 réaliser le support qui permettrait de soutenir tous ces éléments. Celui-ci est constitué de deux parties: une plaque 
@@ -38,20 +38,23 @@ plaque, les haut-parleurs les plus petits ont été soudés en parallèle l'un �
 AJOUTER IMAGE ledDisplay
 AJOUTER IMAGE LOUDSPEAKERS
 
-Une fois ces plaques terminées, elles ont été testées. Pour tester l'afficheur LED en entier, le même système a été utilisé que pour tester les modules séparément : un arduino, ayant une terre commune avec l'afficheur, qui sort les fils SCL et SDA et une alimentation qui procure la terre commune et le +12V. Ces quatre fils ont été connectés à l'afficheur et le programme ''stea-mp-unk-3/arduino/ledDisplay/segmentsTestAll'' a été utilisé (il fait clignoter tous les segments de l'afficheur l'un après l'autre). Ce test est visible à la Vidéo **segmentsTestAll**. Pour tester l'amplificateur, celui-ci a juste été relié à une alimentation 12V standard à l'aide du câble approprié et à un téléphone portable depuis lequel un fichier MP3 était joué. Il fonctionne et les haut-parleurs aussi, néanmoins, le subwoofer a initialement émi un son vibrant désagréable. Pour améliorer cela, il a été surélevé au moyen d'entretoises.
+Une fois ces plaques terminées, elles ont été testées. Pour tester l'afficheur LED en entier, le même système a été utilisé que pour tester les modules séparément : un arduino, ayant une terre commune avec l'afficheur, qui sort les fils SCL et SDA et une alimentation qui procure la terre commune et le +12V. Ces quatre fils ont été connectés à l'afficheur et le programme ''stea-mp-unk-3/arduino/ledDisplay/segmentsTestAll'' a été utilisé (il fait clignoter tous les segments de l'afficheur l'un après l'autre). Ce test est visible à la Vidéo **segmentsTestAll**. Pour tester l'amplificateur, celui-ci a juste été relié à une alimentation 12V standard à l'aide du câble approprié et à un téléphone portable depuis lequel un fichier MP3 était joué. Il fonctionne et les haut-parleurs aussi, néanmoins, le subwoofer a initialement émi un son vibrant désagréable. Pour améliorer cela, il a été surélevé au moyen d'entretoises et déposé sur un morceau de mousse.
 
 AJOUTER VIDÉO SEGMENTSTESTALL
+__Vidéo **segmentsTestAll**: Test final de l'afficheur LED.__
 
-Afin de terminer l'assemblage du matériel, il a d'a
+Lorsque toutes les parties fonctionnèrent indépendemment les unes des autres, il fallut encore s'occuper de l'alimentation. Celle-ci se fait au moyen de 6 batteries maintenues dans deux porte-batteries qui ont été fixés à l'avant de la plaque qui supporte les haut-parleurs. Ensuite, 
 
-!!!3.2 Programmation
+Afin de terminer l'assemblage du matériel, il a fallu fixer toutes les parties ensemble, à l'intérieur de la valise. L'afficheur LED a été fixé dans la moitié de la valise la moins épaisse au moyen des aimants néodium. Les aimants ont été placés sur la plaque de l'afficheur avec de la colle chaude. Sur la valise elle-même, les plaquettes métalliques magnétisables ont été collées.
 
-!!3.2.1 Arduino
+!!!3.3 Programmation
+
+!!3.3.1 Arduino
 L'ATmega32U4, le micro-contrôleur de ''cardReader'', est aussi celui utilisé dans les Arduinos. Par conséquent, on peut utiliser leur plateforme de programmation, qui est open-source, afin d'écrire le code qu'il doit exécuter (on peut télécharger ce programme [ici|https://www.arduino.cc/en/Main/Software]).
 Afin que le programme Arduino final (qu'on peut trouver [ici|https://github.com/opatiny/stea-mp-unk-3/tree/master/arduino/cardReader/cardReaderMT]) soit compréhensible et réutilisable, il a été divisé en plusieurs fichiers, chacun s'occupant d'une fonction spécifique. L'un d'eux, ''cardReaderMT/A_Parameters.ino'', permet de définir tous les paramètres qui sont utilisés dans le reste du programme. Pour définir ces paramètres, la syntaxe @@#define@@ a été utilisée. Celle-ci est pratique, car selon les paramètres définis, on peut exécuter ou non diverses parties du programme.
 
 ((https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/.testDefine_m.png||C))
- __Schéma XXX : Programme Arduino. La fonction @@hi()@@ est exécutée seulement si @@PARAMETER@@ est défini.__
+ __Figure XXX : Programme Arduino. La fonction @@hi()@@ est exécutée seulement si @@PARAMETER@@ est défini.__
 
 Il stocke tous ces paramètres dans sa mémoire et les met à jour à une fréquence définie dans le code, qui peut différer selon les paramètres. Lors de cette partie, le problème principal a été que le micro-contrôleur doit effectuer de nombreuses tâches simultanément, c'est ce qu'on appelle du ''multithread'', c'est-à-dire l'exécution simultanée de plusieurs programmes, les ''threads''. Or, ce procédé requière plusieurs cores, mais l'atMega32U4 n'en a qu'un seul. Par conséquent, un procédé un peu différent a dû être différent: le temps d'utilisation du core est réparti selon la priorité des programmes, on nomme alors cela ''parathread''. Pour réussir à faire cela, nous avons récupéré, puis modifié le code arduino d'un projet existant : un spectrophotomètre open-source dont on trouve la page Github [ici|https://github.com/Hackuarium/simple-spectro/tree/master/arduino/SimpleSpectro]$$Le code récupéré est celui du commit 31f9d76e5fb9615eacc46422a5802c925644640f$$. Le principe est plutôt simple: une librairie Arduino, NilRTOS, permet de définir et de coordonner les ''threads''. Ci-dessous se trouve un exemple simple de multithread qui permet de faire clignoter deux LEDS à des fréquences sans diviseur commun. Dans notre cas, néanmoins, chaque thread a été placé dans un programme distinct.
 
@@ -68,8 +71,8 @@ Dans notre cas, il y a six threads coordonnés dans le programme ''arduino/cardR
 
 Le sixième ''thread'', le ''watchdog'', consiste en un compteur qui croît en permanance jusqu'à ce qu'il atteigne une certaine valeur. Dans ce cas-là, il exécute une fonction, une réinitialisation par défaut pour l'atMega32U4. L'objectif est de remettre ce compteur régulièrement à zéro dans le programme. Ainsi, s'il y a un problème et que le programme n'est pas exécuté normalement, le compteur atteint sa valeur maximale et le micro-contrôleur est réinitialisé, ce qui permet de rendre de le rendre plus autonome, puisqu'il n'est pas nécessaire de le faire manuellement $$ref uio.no$$.
 
-En ce qui concerne l'adaptation de ''cardReader'' en un esclave I2C, l'adresse 0x08 lui a été attribuée. Ainsi, on peut s'y adresser depuis le CHIP. Ensuite, la partie du programme ''stea-mp-unk-3/arduino/cardReader/cardReaderMT/WireSlave.ino'' a été écrite. Celui-ci contient trois fonctions. @@startWireSlave()@@ permet l'initialisation de l'esclave I2C. Cette fonction en requière deux autres: @@requestEvent()@@ qui sert à ...... et @@receiveEvent()@@ qui permet de ...... .
+En ce qui concerne l'adaptation de ''cardReader'' en un esclave I2C, l'adresse 0x08 lui a été attribuée. Ainsi, on peut s'y adresser depuis le CHIP. Ensuite, la partie du programme ''stea-mp-unk-3/arduino/cardReader/cardReaderMT/WireSlave.ino'' a été écrite (basé sur .......add url). Celui-ci contient trois fonctions. @@startWireSlave()@@ permet l'initialisation de l'esclave I2C. Cette fonction en requière deux autres: @@requestEvent()@@ qui sert à ...... et @@receiveEvent()@@ qui permet de ...... .
 
-!!3.2.2 JavaScript
-La partie JavaScript est le programme qui coordonne toutes les parties du projet: ''cardReader'', ''ledDisplay'' et les sorties vers l'amplificateur. 
+!!3.3.2 JavaScript
+La partie JavaScript est le programme qui coordonne toutes les parties du projet: ''cardReader'', ''ledDisplay'' et la sortie vers l'amplificateur. 
 Afin de superviser la communication I2C du côté ''master'', 
