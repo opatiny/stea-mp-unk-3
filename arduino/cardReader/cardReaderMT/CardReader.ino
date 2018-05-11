@@ -22,7 +22,7 @@ NIL_THREAD(ThreadCardReader, arg) {
     long key = 0;
     if (getParameter(PARAM_SCAN_ENABLED) > 0) {
 
-      // code is based on arduino/cardscan and arduino/testHash
+      // code is based on arduino/cardScan and arduino/testHash
       for (byte i = 0; i < sizeof(connPins); i++) {
         digitalWrite(RED_LED, !digitalRead(RED_LED));
         nilThdSleepMilliseconds(30);
