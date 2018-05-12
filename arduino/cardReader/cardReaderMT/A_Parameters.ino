@@ -1,3 +1,4 @@
+// code based on https://github.com/Hackuarium/simple-spectro/tree/master/arduino/SimpleSpectro. Setting parameters required by the CHIP.
 /*********************************************
    This file is used to declare the parameters
    table used by the program.
@@ -18,7 +19,7 @@
 
 #define PARAM_LUMINOSITY   0
 #define PARAM_TEMPERATURE  1
-#define PARAM_MODE         2 // mode selected with button position (off, playlist or single song)
+#define PARAM_MODE         2 // mode selected with button position (off, playlist and single song)
 #define PARAM_LED_1        3
 #define PARAM_LED_2        4
 #define PARAM_SCAN_1       5 // hash is returned on 2 16 bits binaries. -> scan 1 and 2

@@ -1,3 +1,5 @@
+// code taken from https://github.com/Hackuarium/simple-spectro/tree/master/arduino/SimpleSpectro. Allows storing settings in the EEPROM memory.
+
 #include <avr/eeprom.h>
 
 #define EE_START_PARAM           0 // We save the parameter from byte 0 of EEPROM

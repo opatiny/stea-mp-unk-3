@@ -17,7 +17,7 @@ NIL_THREAD(ThreadButton, arg) {
       setParameter(PARAM_MODE, 1); // single song mode
     } else if (!digitalRead(BUTTON_2)) {
       setParameter(PARAM_MODE, 2); // playlist mode
-    } else {
+    } else if (!digitalRead(BUTTON_1) && !digitalRead(BUTTON_2)) {
       setParameter(PARAM_MODE, 0); // off mode
     }
 
@@ -35,7 +35,7 @@ NIL_THREAD(ThreadButton, arg) {
     } else {
       digitalWrite(7, LOW);
     }
-    */
+*/
      
   }
 }
