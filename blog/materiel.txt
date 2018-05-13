@@ -1,0 +1,49 @@
+!!!!2. Matériel
+
+Ci-dessous est listé tout le matériel nécessaire à l'obtention de la valise lecteur MP3 complète.
+
+__Électronique :__
+*16 circuits imprimés ''ledDisplay'' soudées
+*1 circuit imprimé ''cardReader'' soudé
+*Autant de cartes perforées que de morceaux de musique désirés, soudées de façon unique
+*1 C.H.I.P.
+*1 cable mini USB (pour le CHIP)
+*1 cable micro USB (pour ''cardReader'')
+*50cm de fil de cuivre dénudé (diamètre environ 1mm)
+*1m de fil de cuivre non dénudé (diamètre environ 2mm)
+*1.5m de fil électrique (diamètre environ 2mm)
+*1.5m de fil électrique (diamètre environ 1mm)
+*4 haut-parleurs
+*1 ''subwoofer''
+*2 supports pour trois batteries 18650
+*6 batteries NCR18650B
+*1 amplificateur (TPA3116D2)
+*1 régulateur de tension 12V à 5V (MH-MINI-360 $$http://qqtrading.com.my/dc-dc-step-down-mini-360-adjustable-voltage-regulator-module-buck-converter [visité le 12.05.2018] $$)
+*Thermocontractible de différents diamètres
+
+__Général :__
+*1 vieille valise en cuir (dimensions intérieures : 450x315x100mm)
+*96 vis M3 par 10 en nylon noir + 96 écrous M3 en nylon noir
+*4 entretoises de 25 mm de haut
+*700x500mm de MDF (une sorte de bois composite) de 3mm d'épaisseur
+*3 plaquettes fines (environ 1mm d'épaisseur) de métal magnétisable 
+*6 aimants néodium cylindriques (1cm de diamètre x 3mm d'épaisseur)
+*1 cercle de mousse amortissante de 10cm de diamètre et 3cm d'épaisseur
+*Mousse de polystyrène extrudé rigide (max 15x15cm)
+
+__Outils :__
+*1 fer à souder
+*Fil d'étain
+*1 paire de brucelles
+*1 pince à dénuder
+*1 multimètre
+*1 alimentation variable jusqu'à 20V et 2A
+*1 ordinateur
+*1 perceuse
+*1 mèche M4
+*1 mèche M5
+*1 mèche M15
+*1 tournevis cruciforme
+*Colle chaude
+*1 découpeuse laser qui puisse au moins découper des surfaces de 500 par 400mm
+
