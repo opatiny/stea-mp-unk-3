@@ -70,6 +70,6 @@ Voici les librairies utilisées dans la partie JavaScript du ''software'' :
 *__delay__ : offre la possibilité de mettre des délais dans les programmes JavaScript.
 *__mplayer-as-promised__ : lancement, arrêt, reprise et temps restant d'un morceau de musique.
 *__i2c-bus__ : communication en I2C entre le CHIP et l'ATmega32U4.
-*__child_process__ : exécute des scripts bash depuis un programme JavaScript (exec).
+*__child_process__ : exécute des scripts bash depuis un programme JavaScript.
 *__spawn-promise__ : librairie qui adapte child_process.spawn pour utiliser des ''promise''.
 *__fs__ : abbréviation de ''file system'', sert à accéder aux fichiers du disque et à les modifier.

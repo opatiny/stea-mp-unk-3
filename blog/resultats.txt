@@ -1,5 +1,6 @@
 !!!!4. Résultats
-Au travers de nombreux tests, il a été démontré que toutes les parties indépendantes du projet fonctionnent. En 
+Au travers de nombreux tests, il a été démontré que toutes les parties indépendantes du projet fonctionnent globalement, malgré quelques défauts / bugs restants. 
+Tout d'abord, les PCA968 des seize modules de l'afficheur LED sont connectés au bus I2C avec une addresse unique sur le bus. Ainsi, lorsque le bus est scanné au moyen d'un arduino
 
 !!!4.1 Utilisation du lecteur MP3
 Voici un court protocole expliquant la procédure qui permet d'utiliser le lecteur MP3.
@@ -9,7 +10,7 @@ __Démarrage :__
 *Vérifier que tous les fils sont branchés au bon endroit : le câble jack, l'alimentation USB du CHIP, l'alimentation de ''cardReader'' et l'alimentation de l'amplificateur.
 *Vérifier que la LED rouge de ''cardReader'' clignote et que la LED verte de l'amplificateur est allumée.
 *Patienter le temps du démarrage du CHIP : la LED blanche doit clignoter.
-*Lorsque le lecteur est prêt à être utilisé, il affiche ''Waiting''.
+*Lorsque le lecteur est prêt à être utilisé, il affiche ''Waiting'' sur la ligne du haut. Il afficher huit zéro sur celle du bas. Si une carte est insérée et pas reconnue, il affiche le hash correspondant en hexadécimal.
 
 __Utilisation :__
 *Balancer le bouton trois positions vers la droite pour mettre en mode 1 (''playlist'') ou le balancer vers la gauche pour mettre en mode 2 (''single song'').
