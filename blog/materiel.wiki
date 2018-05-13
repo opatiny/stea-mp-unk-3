@@ -15,10 +15,10 @@ __Électronique :__
 *1.5m de fil électrique (diamètre environ 1mm)
 *4 haut-parleurs
 *1 ''subwoofer''
-*2 supports pour trois batteries 18x650
-*6 batteries 
+*2 supports pour trois batteries 18650
+*6 batteries NCR18650B
 *1 amplificateur (TPA3116D2)
-*1 régulateur de tension 12V à 5V
+*1 régulateur de tension 12V à 5V (MH-MINI-360 $$http://qqtrading.com.my/dc-dc-step-down-mini-360-adjustable-voltage-regulator-module-buck-converter [visité le 12.05.2018] $$)
 *Thermocontractible de différents diamètres
 
 __Général :__
