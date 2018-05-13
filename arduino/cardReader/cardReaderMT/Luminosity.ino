@@ -8,7 +8,7 @@ NIL_THREAD(ThreadLuminosity, arg) {
   pinMode(LUMINOSITY, INPUT);
 
   while (true) {
-    setParameter(PARAM_LUMINOSITY, analogRead(LUMINOSITY) );
+    setParameter(PARAM_LUMINOSITY, analogRead(LUMINOSITY));
     nilThdSleepMilliseconds(1000);
   }
 }
