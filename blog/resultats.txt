@@ -1,9 +1,9 @@
 !!!!4. Résultats
-Au travers de nombreux tests, il a été démontré que toutes les parties indépendantes du projet fonctionnent globalement, malgré quelques défauts / bugs restants. 
-Tout d'abord, les PCA968 des seize modules de l'afficheur LED sont connectés au bus I2C avec une addresse unique sur le bus. Ainsi, lorsque le bus est scanné au moyen d'un arduino
+Puisque une grande partie des résultats obtenus pour les parties individuelles du projet ont été montrés dans la section __Méthodes__ de ce billet, nous ne montrons ici que les résultats d'ensemble qui sont présentés au travers de la marche à suivre d'utilisation ci-dessous.
 
-!!!4.1 Utilisation du lecteur MP3
-Voici un court protocole expliquant la procédure qui permet d'utiliser le lecteur MP3.
+!!! Utilisation du lecteur MP3
+Voici un court protocole expliquant la procédure qui permet d'utiliser le lecteur MP3. L'équivalent vidéo peut être trouvé au lien suivant : [https://youtu.be/vln9X8TIJ3k].
+
 __Démarrage :__
 *Ouvrir la valise en tirant les deux clapets vers l'extérieur après avoir composé le code 197 197. 
 *Prendre les six batteries qui se trouvent dans la poche extérieure de la valise et les placer dans les deux portes-batteries en prenant garde au sens.
@@ -17,7 +17,7 @@ __Utilisation :__
 *Prendre la liste des cartes et morceaux correspondants qui se trouve dans la poche extérieure de la valise avec les cartes perforées.
 *Insérer une carte perforée dans le lecteur de cartes (les deux sens sont possibles). Le morceau correspondant devrait être joué. Le titre, le nom de l'auteur et le temps restant du morceau sont affichés sur l'afficheur LED.
 *En mode 1, autant de cartes que désiré peuvent être insérées, les morceaux correspondants s'ajoutent à la fin de la liste de lecture. Le nombre de morceaux en attente est affiché en bas à droite de l'afficheur LED.
-*En mode deux, toute carte insérée interromps la musique jouée et lance le nouveau morceau.
+*En mode 2, toute carte insérée interromps la musique jouée et lance le nouveau morceau.
 
 __Arrêt :__
 *Placer le bouton trois position en mode 1 et appuyer sur le bouton rouge. La procédure d'arrêt devrait être enclanchée. L'afficheur doit indiquer ''Shutting down''.

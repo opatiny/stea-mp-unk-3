@@ -6,10 +6,10 @@ Toutes les plaques de l'afficheur LED ont été soudées entre la fin du projet 
 
 En second lieu, il était encore nécessaire de souder des cartes perforées pour pouvoir les attribuer à des morceaux de musique ou à des playlists. Nous avons fait cela aléatoirement, en prenant toutefois garde à deux aspects : ne pas faire accidentellement deux cartes identique et ne pas relier tous les pins entre eux (la carte ne pourrait alors pas être détectée). Ensuite, nous avons inséré les cartes dans cardReader afin d'obtenir leur code unique (résultat du hash 32 bits élaboré au projet hiver) sous forme de 8 caractères en hexadécimal (le programme utilisé est ''stea-mp-unk-3/arduino/cardReader/[cardToHash|https://github.com/opatiny/stea-mp-unk-3/blob/master/arduino/cardReader/cardToHash/cardToHash.ino]''). Nous imprimons ce code et le collons au dos des cartes afin de pouvoir les distinguer. Enfin, une liste des codes uniques a été effectuée, avec les morceaux qui leurs sont attribués (on trouve cette liste [ici|https://drive.google.com/open?id=1YJuBsfl1E_AifsTRFOtuGRGBT_UB18SHuMxXE-PrzUY]).
 
-IMAGE EXEMPLE CARTE PERF
+((https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/.perfCard_m.png||C))
+__Figure **perfCard** : Exemple de cartes perforées soudées.__
 
-
-!!!3.2 Finalisation et assemblage du ''hardware''
+!!!3.2 Finalisation, assemblage et test du ''hardware''
 Au début de ce projet, toutes les parties principales étaient réunies : les circuits électroniques avaient tous été 
 soudés et testés, les haut-parleurs étaient à disposition et le support énergétique aussi. Pourtant, il fallait 
 réaliser le support qui permettrait de soutenir tous ces éléments. Celui-ci est constitué de deux parties: une plaque 
@@ -21,19 +21,35 @@ que les dimensions du modèles peuvent être modifiées très facilement. Les mo
 ((https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/.freecadModels_m.png||C))
 __Figure **freecadModel** : Modèles FreeCAD des planches à découper.__
 
-Afin de réaliser les modèles, nous avons procédé de deux façons différentes pour connaître les dimensions exactes des objets à placer sur ceux-ci. Pour les plaques, nous avons exporté leur dimensions directement depuis ''Eagle''. Pour les trous dans lesquels rentrent les haut-parleurs, nous avons réalisé les mesures en utilisant un pied à coulisse, qui a permis une précision suffisante. Néanmoins, les trous pour les fixer ont été réalisés après coup avec une visseuse, une mèche M3 pour les petits haut-parleurs et une mèche M4 pour le grand (subwoofer).
-
-Une fois les modèles terminés, ils ont été exportés au format .dxf. En effet, c'est un des formats acceptés par la découpeuse laser que nous avons utilisée pour réaliser les modèles. Ils ont été découpés dans du MDF 3mm, qui est un matériau peu cher (5fr/m²) et suffisemment résistant pour cette application. Ensuite, toutes les parties ont été fixées sur les plaques avec les vis en nylon M3 et les écrous, excepté le subwoofer qui a été fixé avec les vis M4. Pour terminer l'afficheur LED, les 16 modules ont été connectés entre eux en utilisant les fils de cuivre. Quatre connections devaient être faites : SDA, SCL, GND (terre) et +12V (alimentation). Pour les modules côte à côte, des petits bout (<1cm) de cuivre dénudé ont été utilisés. Pour connecter les lignes entre elles, par contre, ce sont des morceaux plus longs de fil non dénudé (pour éviter les courts-circuits) qui ont été soudés. Pour l'autre plaque, les haut-parleurs les plus petits ont été soudés en parallèle l'un à l'autre avant d'être reliés à l'amplificateur. Le subwoofer, quand à lui, y a été directement connecté. Ces connections consistent en deux fils : une terre et un signal d'excitation. 
+Afin de réaliser les modèles, nous avons procédé de deux façons différentes pour connaître les dimensions exactes des objets à placer sur ceux-ci. Pour les plaques, nous avons exporté leur dimensions directement depuis ''Eagle''. Pour les trous dans lesquels rentrent les haut-parleurs, nous avons réalisé les mesures en utilisant un pied à coulisse, qui a permis une précision suffisante. Néanmoins, les trous pour les fixer ont été réalisés après coup avec une visseuse, une mèche M3 pour les petits haut-parleurs et une mèche M4 pour le grand (subwoofer).Une fois les modèles terminés, ils ont été exportés au format ''.dxf''. En effet, c'est un des formats acceptés par la découpeuse laser que nous avons utilisée pour réaliser les modèles. Ils ont été découpés dans du MDF 3mm, qui est un matériau peu cher (5fr/m²) et suffisemment résistant pour cette application.
 
 ((https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/.mdfSupport.JPG||C))
 __Figure **mdfSupport** : Planches découpées à la découpeuse laser.__
 
-Une fois ces plaques terminées, elles ont été testées. Pour tester l'afficheur LED en entier, le même système a été utilisé que pour tester les modules séparément : un arduino, ayant une terre commune avec l'afficheur, qui sort les fils SCL et SDA et une alimentation qui procure la terre commune et le +12V. Ces quatre fils ont été connectés à l'afficheur, puis nous avons utilisé le programme de test ''stea-mp-unk-3/arduino/ledDisplay/I2C/i2c-scanner'' afin de scanner le bus I2C et de vérifier que les seize modules étaient reconnus. Le résultat de ce scan est montré à la Figure **i2cBusScan**. Enfin, le programme ''stea-mp-unk-3/arduino/ledDisplay/segmentsTestAll'' a été utilisé (il fait clignoter tous les segments de l'afficheur l'un après l'autre). Ce test, accompagné de commentaires sur le projet, est visible à la vidéo du lien suivant: [https://youtu.be/d6xZFdfC1cU] . Pour tester l'amplificateur, celui-ci a juste été relié à une alimentation 12V standard à l'aide du câble approprié et à un téléphone portable depuis lequel un fichier MP3 était joué. Il fonctionne et les haut-parleurs aussi, néanmoins, le subwoofer a initialement émi un son vibrant désagréable. Pour améliorer cela, il a été surélevé au moyen d'entretoises et déposé sur un morceau de mousse.
+Ensuite, toutes les parties ont été fixées sur les plaques avec les vis en nylon M3 et les écrous, excepté le subwoofer qui a été fixé avec des vis M4 dans un premier temps. Pour terminer l'afficheur LED, les 16 modules ont été connectés entre eux en utilisant les fils de cuivre. Quatre connections devaient être faites : SDA, SCL, GND (terre) et +12V (alimentation). Pour les modules côte à côte, des petits bout (<1cm) de cuivre dénudé ont été utilisés. Pour connecter les lignes entre elles, par contre, ce sont des morceaux plus longs de fil non dénudé (pour éviter les courts-circuits) qui ont été soudés. Pour l'autre plaque, les haut-parleurs les plus petits ont été soudés en parallèle l'un à l'autre avant d'être reliés à l'amplificateur. Le subwoofer, quand à lui, y a été directement connecté. Ces connections consistent en deux fils : une terre et un signal d'excitation. 
+
+Une fois ces plaques terminées, elles ont été testées. Pour tester l'afficheur LED en entier, le même système a été utilisé que pour tester les modules séparément : un arduino, ayant une terre commune avec l'afficheur, qui sort les fils SCL et SDA et une alimentation qui procure la terre commune et le +12V. Ces quatre fils ont été connectés à l'afficheur, puis nous avons utilisé le programme de test ''stea-mp-unk-3/arduino/I2C/i2c-scanner'' afin de scanner le bus I2C et de vérifier que les seize modules étaient reconnus. Le résultat de ce scan est montré à la Figure **i2cBusScan**. Enfin, le programme ''stea-mp-unk-3/arduino/ledDisplay/segmentsTestAll'' a été utilisé (il fait clignoter tous les segments de l'afficheur l'un après l'autre). Ce test, accompagné de commentaires sur le projet, est visible à la vidéo au lien suivant: [https://youtu.be/d6xZFdfC1cU]. Pour tester l'amplificateur, celui-ci a juste été relié à une alimentation 12V standard à l'aide du câble approprié et à un téléphone portable depuis lequel un fichier MP3 était joué (voir Vidéo **loudSpeakerTest**). L'amplificateur fonctionne et les haut-parleurs aussi, néanmoins, le subwoofer émet un son vibrant désagréable. Pour améliorer cela, il a été surélevé au moyen d'entretoises M3 et déposé sur un morceau de mousse.
 
 ((https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/.i2cDisplayScan.jpg||C))
 __Figure **i2cBusScan** : Résultat du scan du bus I2c sur lequel est connecté ''ledDisplay''.__
 
-Lorsque toutes les parties ont fonctionné indépendemment les unes des autres, il fallut encore s'occuper de l'alimentation. Celle-ci se fait au moyen de 6 batteries maintenues dans deux porte-batteries qui ont été fixés à l'avant de la plaque qui supporte les haut-parleurs. Chacun d'eux produit une tension de environ 11.4V quand les batteries sont chargées. Un des porte-batterie alimente le CHIP, ''cardReader'' et l'afficheur LED alors que l'autre alimente l'amplificateur, et donc les haut-parleurs. Le CHIP devant être alimenté en 5V, nous avons utilisé un régulateur de tension soudé à un câble USB mini pour l'alimenter.
+
+///html
+<div style="text-align: center;">
+<video controls="" preload="auto" width="400" height="300">
+<source src="https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/loudspeakersTest.mp4">
+<object type="application/x-shockwave-flash" data="http://oci.gyre.ch/blog/?pf=player_flv.swf" width="400" height="300">
+<param name="movie" value="http://oci.gyre.ch/blog/?pf=player_flv.swf">
+<param name="wmode" value="transparent">
+<param name="allowFullScreen" value="true">
+<param name="FlashVars" value="title=loudspeakersTest.mp4&amp;amp;margin=1&amp;showvolume=1&amp;showtime=1&amp;showfullscreen=1&amp;buttonovercolor=ff9900&amp;slidercolor1=cccccc&amp;slidercolor2=999999&amp;sliderovercolor=0066cc&amp;flv=https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/loudspeakersTest.mp4&amp;width=400&amp;height=300">
+Lecteur vidéo intégré</object>
+</video>
+</div>
+///
+__Vidéo **loudSpeakerTest** : Test des haut-parleurs.__
+
+Lorsque toutes les parties ont fonctionné indépendamment les unes des autres, il fallut encore s'occuper de l'alimentation. Celle-ci se fait au moyen de 6 batteries maintenues dans deux porte-batteries qui ont été fixés à l'avant de la plaque qui supporte les haut-parleurs. Chacun d'eux produit une tension de environ 11.4V quand les batteries sont chargées. Un des porte-batterie alimente le CHIP, ''cardReader'' et l'afficheur LED alors que l'autre alimente l'amplificateur, et donc les haut-parleurs. Le CHIP devant être alimenté en 5V, nous avons utilisé un régulateur de tension soudé à un câble USB mini pour l'alimenter (voir Schéma **mainScheme**).
 
 Afin de terminer l'assemblage du matériel, il a fallu fixer toutes les parties ensemble, à l'intérieur de la valise. L'afficheur LED a été fixé dans la moitié de la valise la moins épaisse au moyen des aimants néodium. Les aimants ont été placés sur la plaque de l'afficheur avec de la colle chaude. Les plaquettes métalliques magnétisables ont été collées sur la valise elle-même. Pour la partie avec les haut-parleurs, des paralèllipipèdes de polystyrène extrudé rigide ont été collés au dos afin de supporter le poids de la plaque. Ensuite, celle-ci est juste glissée dans la valise et tient car elle est suffisamment bien ajustée.
 
@@ -47,7 +63,7 @@ __Schéma **mainScheme** : Tous les fils qui connectent les différentes parties
 
 
 !!!3.3 Obtention et traitement de la musique
-Afin d'obtenir les morceaux de musique désirés au format MP3, une ''playlist'' avec tous les morceaux a été réalisée sur YouTube (on la trouve [ici|https://www.youtube.com/playlist?list=PL-AGTXGfTz5ZugN3OLKQ2QQJyzX-eool0]). Ensuite, l'outil youtube-dl (plus d'informations [ici|https://github.com/rg3/youtube-dl/blob/master/README.md#readme]) a été utilisé afin de la télécharger. En effet, cet outil permet de télécharger n'importe quelle vidéo qui se trouve à un lien donné sur YouTube en différents formats et différentes qualités. Afin d'installer ''youtube-dl'' sur Fedora 27.0. nous avons procédé de la façon suivante:
+Afin d'obtenir les morceaux de musique désirés au format MP3, une ''playlist'' avec tous les morceaux a été réalisée sur YouTube (on la trouve [ici|https://www.youtube.com/playlist?list=PL-AGTXGfTz5ZugN3OLKQ2QQJyzX-eool0]). Ensuite, l'outil @@youtube-dl@@ (plus d'informations [ici|https://github.com/rg3/youtube-dl/blob/master/README.md#readme]) a été utilisé afin de la télécharger. En effet, cet outil permet de télécharger n'importe quelle vidéo qui se trouve à un lien donné sur YouTube en différents formats et différentes qualités. Afin d'installer ''youtube-dl'' sur Fedora 27.0. nous avons procédé de la façon suivante:
  @@sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl@@
  @@sudo chmod a+rx /usr/local/bin/youtube-dl@@
 
@@ -77,40 +93,39 @@ __Programme **BASICNIL** : Permet de faire clignoter deux LEDs en utilisant des 
 
 Dans notre cas, il y a six threads coordonnés dans le programme ''arduino/cardReader/cardReaderMT/Z_Start_thread.ino'', ils sont définis dans l'ordre de priorité suivant:
 #ThreadSerial : Communication sérial permettant la programmation de l'ATmega32U4 (récupéré tel quel du projet ''open-spectro'')
-#ThreadLuminosity : Mesure l'intensité lumineuse captée par la photorésistance
-#ThreadTemperature : Mesure de la température
-#ThreadCardReader : Gère le stockage du le hash correspondant à la carte introduite
-#ThreadButton : Gère l'état du bouton
-#ThreadMonitoring : ''Watchdog'' qui réinitialise le micro-contôleur après 7 secondes
+#@@ThreadLuminosity@@ : Mesure l'intensité lumineuse captée par la photorésistance
+#@@ThreadTemperature@@ : Mesure de la température
+#@@ThreadCardReader@@ : Gère le stockage du le hash correspondant à la carte introduite
+#@@ThreadButton@@ : Gère l'état du bouton
+#@@ThreadMonitoring@@ : ''Watchdog'' qui réinitialise le micro-contôleur après 7 secondes
 
 Le sixième ''thread'', le ''watchdog'', consiste en un compteur qui croît en permanance jusqu'à ce qu'il atteigne une certaine valeur. Dans ce cas-là, il exécute une fonction, une réinitialisation par défaut pour l'atMega32U4. L'objectif est de remettre ce compteur régulièrement à zéro dans le programme. Ainsi, s'il y a un problème et que le programme n'est pas exécuté normalement, le compteur atteint sa valeur maximale et le micro-contrôleur est réinitialisé, ce qui permet de rendre de le rendre plus autonome, puisqu'il n'est pas nécessaire de le faire manuellement $$Jean Rabault. (2015). Arduino watchdog. Retrieved May 8, 2018, from [https://folk.uio.no/jeanra/Microelectronics/ArduinoWatchdog.html]$$.
 
-En ce qui concerne l'adaptation de ''cardReader'' en un esclave I2C, l'adresse 0x08 lui a été attribuée (dans les paramètres). Ainsi, on peut s'y adresser depuis le CHIP. Ensuite, la partie du programme ''stea-mp-unk-3/arduino/cardReader/cardReaderMT/WireSlave.ino'' a été écrite (ce programme est basé sur $$ $$), elle utilise principalement la librairie Arduino ''Wire''. Celui-ci contient trois fonctions. @@startWireSlave()@@ permet l'initialisation en soit de l'esclave I2C. Cette fonction en requière deux autres: @@requestEvent()@@ qui sert à l'Arduino de renvoyer un paramètre qui lui a été demandé par le ''master'' et @@receiveEvent()@@ qui permet à l'arduino de recevoir une commande.
+En ce qui concerne l'adaptation de ''cardReader'' en un esclave I2C, l'adresse @@0x08@@ lui a été attribuée (dans les paramètres). Ainsi, on peut s'y adresser depuis le CHIP. Ensuite, la partie du programme ''stea-mp-unk-3/arduino/cardReader/cardReaderMT/WireSlave.ino'' a été écrite (ce programme est basé sur $$cornelam (instructables username). (2009). I2C Between Arduinos. Retrieved May 13, 2018, from http://www.instructables.com/id/I2C-between-Arduinos/$$), qui utilise principalement la librairie Arduino ''Wire''. Elle contient trois fonctions, dont la principale, @@startWireSlave()@@, permet l'initialisation en soit de l'esclave I2C. Cette fonction en requière deux autres: @@requestEvent()@@ qui sert à l'Arduino de renvoyer un paramètre qui lui a été demandé par le ''master'' et @@receiveEvent()@@ qui permet à l'arduino de recevoir une commande.
 
 
 !!3.4.2 Partie JavaScript
 Toute la partie JavaScript du programme se trouve dans son propre projet GitHub (lien [ici|https://github.com/opatiny/node-steam-player/tree/master/src]''. Elle est séparée du reste du projet car tout ce dossier est cloné sur le CHIP. Il faut donc éviter tout fichier inutile puisque la mémoire est limitée.
 L'autre avantage d'avoir le code dans un projet GitHub est qu'il est possible de travailler dans un vrai éditeur de code sur un ordinateur. Dans notre cas, l'éditeur ''Visual Studio Code'' $$Visual Studio Code - Code Editing. Redefined. (n.d.). Retrieved May 13, 2018, from [https://code.visualstudio.com/]$$ est utilisé car il est open-source et permet d'implémenter des extensions facilement en fonction des besoins.
 
-Sur le CHIP, on ne peut lancer un programme que depuis un terminal. Par conséquent, nous utilisons Node.js $$Node.js. (n.d.). Retrieved May 13, 2018, from [https://nodejs.org/en/]$$, qui permet d'exécuter des programmes JavaScript depuis terminal. Afin d'installer Node.js sur le CHIP, il était d'abord nécessaire d'installer NVM (''Node Package Manager''), qui permet donc de superviser Node.js ainsi que toutes les librairies que nous utilisons dans le programme JavaScript (tutoriel d'installation [ici|https://www.liquidweb.com/kb/how-to-install-node-js-on-fedora-23/]). Lorsque Node.js est installé, tout programme peut être lancé facilement avec la commande terminal suivante :
+Sur le CHIP, on ne peut lancer un programme que depuis un terminal. Par conséquent, nous utilisons Node.js $$Node.js. (n.d.). Retrieved May 13, 2018, from [https://nodejs.org/en/]$$, qui permet d'exécuter des programmes JavaScript depuis terminal. Afin d'installer Node.js sur le CHIP, il était d'abord nécessaire d'installer NVM (''Node Version Manager''), qui permet donc de superviser Node.js (tutoriel d'installation [ici|https://www.liquidweb.com/kb/how-to-install-node-js-on-fedora-23/]). D'autre part, NPM (''Node Package Manager'') permet s'occupe de toutes les librairies que nous utilisons dans le programme JavaScript. Lorsque Node.js est installé, tout programme peut être lancé facilement avec la commande terminal suivante :
  @@node monProgramme.js@@
 
 La partie JavaScript est le programme qui coordonne toutes les parties du projet: ''cardReader'', ''ledDisplay'' et la sortie vers l'amplificateur. Afin de réussir à faire tout fonctionner, il a à nouveau été nécessaire de réaliser de nombreux tests. Tous les tests qui ont été réalisés se trouvent dans ''node-steam-player/src/util/[tests|https://github.com/opatiny/node-steam-player/tree/master/src/util/tests]'' et dans ''node-steam-player/src/i2c/[tests|https://github.com/opatiny/node-steam-player/tree/master/src/i2c/tests]''. Ceux-ci nous ont permis de développer de nombreuses fonctions que l'on requière dans le code principal : ''node-steam-player/src/[index.js|https://github.com/opatiny/node-steam-player/tree/master/src/index.js]''.
 
-Pour coordonner le programme JavaScript, il a fallu trouver un moyen de partager des paramètres communs entre toutes les parties du code. Pour cela, nous définissons un objet @@context@@ dans le code principal qui est appelé par toutes les fonctions utilisées (cet objet est montré au Programme **contextObject**). Ces fonctions utilisent alors les valeurs des paramètres dont elles ont besoin et modifient celles qu'elles doivent modifier. Cette méthode est pratique, car on a alors toutes les valeurs à jour en même temps et au même {{endroit}}.
+Pour réaliser le programme JavaScript, il a fallu trouver un moyen de partager des paramètres communs entre toutes les parties du code. Pour cela, nous définissons un objet @@context@@ dans le code principal qui est appelé par toutes les fonctions utilisées (cet objet est montré au Programme **contextObject**). Ces fonctions utilisent alors les valeurs des paramètres dont elles ont besoin et modifient celles qu'elles doivent modifier. Cette méthode est pratique, car on a alors toutes les paramètres à jour en même temps et au même {{endroit}}.
 
 ((https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/.contextObject_m.png||C))
-__Programme **contextObject** : Requière en I2C le paramètre {{luminosité}} stocké par cardReader.__
+__Programme **contextObject** : Objet principal du code servant au stockage de tous les paramètres.__
 
 Lors de cette partie de la programmation, plusieurs problèmes ont dû être résolus :
 *Requérir les paramètres du slave I2C (''cardReader'').
-*Lancer un fichier MP3 à partir du CHIP.
-*Connaître la durée d'un morceau et le temps depuis lequel le morceau est joué.
+*Lancer un fichier MP3 à partir du CHIP et le temps depuis lequel le morceau est joué.
+*Connaître la durée d'un morceau.
 *Connaître le contenu d'un dossier, afin de savoir tous les morceaux de musique disponibles dans la mémoire.
 *Contrôler les sorties PWM des PCA9685.
 *Afficher des lettres sur l'afficheur LED.
-*Afficher un texte sur l'afficheur LED.
-*Éteindre le CHIP.
+*Éteindre le CHIP à partir d'un programme JavaScript.
 *Lancer un programme par défaut lors du démarrage du CHIP.
 
 Afin de superviser la communication I2C du côté ''master'', la librairie ''i2c-bus'' est utilisée $$Fivdi. (n.d.). I2C serial bus access with Node.js. Retrieved September 4, 2018, from [https://github.com/fivdi/i2c-bus]$$. Celle-ci permet d'ouvrir une connection sur un bus I2C en particulier avec la fonction @@openSync(bus)@@. Un fois la connection ouverte, on peut lire un paramètre I2C stocké par l'Arduino en utilisant la méthode @@readWordSync(slaveAddress, parameter)@@ où @@slaveAdress@@ est l'adresse de l'esclave I2C et @@parameter@@ est le paramètre que l'on veut lire. Le Programme **i2cLibraryTest** montre comment requérir le paramètre @@luminosity@@ stocké par ''cardReader''. Dans notre cas, tous les paramètres récupérés (''luminosity'', ''temperature'', switchState'' et ''card'') sont stockés dans la propriété @@cardReaderStatus@@ de l'objet commun @@context@@.
@@ -118,6 +133,34 @@ Afin de superviser la communication I2C du côté ''master'', la librairie ''i2c
 ((https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/.i2cLibraryTest_m.png||C))
 __Programme **i2cLibraryTest** : Requière en I2C le paramètre {{luminosité}} stocké par cardReader.__
 
+Ensuite, on dût trouver un moyen de jouer un fichier audio depuis le CHIP. Heureusement, il existe une librairie qui permet de faire cela plutôt facilement: @@mplayer-as-promised@@ (informations sur la librairie : $$cdunford (npm username). (n.d.). mplayer-as-promised (npm package). Retrieved September 4, 2018, from https://www.npmjs.com/package/mplayer-as-promised$$). Nous utilisons trois méthodes de cette librairie : 
+*@@openfile(pathToAudioFile)@@ : permet de lancer un fichier audio.
+*@@stop()@@ : permet de stopper un fichier audio.
+*@@getCurrentTime()@@ : retourne le nombre de secondes depuis lequel un morceau est en train d'être joué.
+Le Programme **playMP3** montre comment lancer un morceau au moyen de cette librairie.
+
+((https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/.playMP3_m.png||C))
+__Programme **playMP3** : Requière en I2C le paramètre {{luminosité}} stocké par cardReader.__
+
+Pour pouvoir afficher le temps restant du morceau qui est en train d'être joué, il nous fallait non seulement le temps actuel du morceau joué, mais aussi sa durée. Or, tout morceau de musique contient des informations sur lui-même dans son fichier et il existe un outil qui permet de les récupérer: @@mp3info@@. Néanmoins, cet outil est normalement utilisé au niveu d'un terminal. Il a donc fallut trouver un moyen de l'utiliser depuis notre programme JavaScript. Par chance, une librairie très simple permet de faire cela: @@pilla-lib-mp3info@@ $$perrywu (npm username). (n.d.). pilla-lib-mp3info (npm package). Retrieved September 4, 2018, from [https://www.npmjs.com/package/pilla-lib-mp3info]$$. C'est ce qui a été utilisé afin de connare la longueur de nos morceaux.
+
+Un autre aspect a été d'être capable de scanner tout le dossier contenant les morceaux copiés sur le CHIP afin de créer une correspondance entre les clés existantes, le nom de l'artiste et le titre du morceau qui sont attribués à un fichier situé à un certain chemin : c'est une sorte de table des matières. Celle-si peut être générée grâce à la librairie @@fs@@ $$Node.js. (n.d.). Retrieved May 13, 2018, from [https://nodejs.org/en/]$$, dont nous utilisons les méthodes suivantes:
+*@@existsSync(path)@@ : vérifie si le chemin relatif @@path@@ existe.
+*@@readdirSync(path)@@ : liste le contenu du dossier indiqué par le chemin relatif @@path@@ sous forme d'un ''array''.
+*@@isDirectory(path)@@ : renvoie @@true@@ si le fichier est un dossier.
+Nous stockons cette table des matières en tant qu'une liste d'objets dont les propriétés sont @@key@@ (code de la carte perforée correspondante), @@file@@ (chemin relatif vers le fichier audio), @@author@@ (le nom de l'artiste) et @@title@@ (le titre du morceau). Cette liste est générée par le programme ''node-steam-player/src/util/[loadTOC.js|https://github.com/opatiny/node-steam-player/blob/master/src/util/loadTOC.js]'' à chaque fois que @@index.js@@ est lancé.
+
+Pour contrôler l'afficheur LED, il a fallu être capable de contrôler les PCA9685. Pour ce faire, nous nous sommes basés sur la librairies Johny-Five pca9685 et sur la fiche de données de ce composant. Nous avons ainsi pu définir plusieurs fonctions qui permettent d'allumer à volonté les seize segments contrôlés par chaque PCA9685 en utilisant un masque de 16 bits (''node-steam-player/src/i2c/[pca9685.js|https://github.com/opatiny/node-steam-player/blob/master/src/i2c/pca9685.js]''). Dès lors, nous avons pu définir tous les caractères que nous voulions afficher sur l'afficheur LED sous forme d'un nombre binaire de un byte. Tous ces caractères, qui forment notre alphabet, sont contenus dans l'objet contenu dans le fichier ''node-steam-player/src/i2c/[alphabet.js|https://github.com/opatiny/node-steam-player/blob/master/src/i2c/[alphabet.js]''. Le Programme **alphabet** montre une partie de ces caractères.
+
+((https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/.alphabet_m.png||C))
+__Programme **alphabet** : Codes binaires correspondant aux lettres ''A'', ''B'' et ''C'' affichés sur ''ledDisplay''.__
+
+Dès lors, en accolant deux des codes de cet objet (qui correspondent à deux lettres qui veulent être affichées), on obtient le masque qui fait office de paramètre aux fonctions dévellopées pour l'afficheur. Les fonctions servant à afficher directement un texte voulu sont contenue dans le programme ''node-steam-player/src/i2c/[display.js|https://github.com/opatiny/node-steam-player/blob/master/src/i2c/display.js]'', qui requière le fichier ''pca9685.js'' qui a été mentionné auparavant.
+
+Puis, nous avons encore dû trouver un moyen d'éteindre le CHIP depuis un programme JavaScript. Ce qui est très simple si on utilise la méthode @@exec@@ (qui est une partie d'une librairie plus importante, @@child-process@@) qui permet d'effectuer n'importe quelle commande terminal depuis un script. Le Progamme **shutdown** (''node-steam-player/src/i2c/tests/shutdown-test.js|https://github.com/opatiny/node-steam-player/blob/master/src/i2c/tests/shutdown-test.js]'') permet d'éteindre le CHIP après cinq secondes.
+
+((https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/.shutdown_m.png||C))
+__Programme **shutdown** : Permet d'éteindre le CHIP depuis un script JavaScript.__
 
 Enfin, il faut que @@index.js@@ soit lancé automatiquement lors du démarrage du CHIP. Il existe un package NPM qui permet cela: PM2. Cet outil permet de rajouter un ou plusieurs programmes qui sont exécutés lors de la procédure de démarrage de la machine (pour voir une procédure détaillée de l'installation et de l'utilisation, cliquer [ici|https://drive.google.com/open?id=16d5uIVH7B1bILVq0kM2IcjbtPsU6hPXn9onUxX1efGE]). Dans notre cas, cela ne concerne que @@index.js@@.
 
