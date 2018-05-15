@@ -6,7 +6,7 @@ n'était composé que de 12'300 transistors (l'entité de base d'un micro-proces
 en comparaison, en contient environ 1,6 milliards $$curiouDroid$$...
 
  ((https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/.dskyAGC_m.jpg||C))
- __Schéma 1 : Le DSKY (Display and Keyboard) de l'ordinateur central des fusées Apollo. $$Computers in Spaceflight: The NASA Experience - Chapter Two  - Computers On Board The Apollo Spacecraft. (n.d.). Retrieved April 18, 2018, from https://history.nasa.gov/computers/Ch2-4.html$$__
+ __Figure 1 : Le DSKY (Display and Keyboard) de l'ordinateur central des fusées Apollo. $$Computers in Spaceflight: The NASA Experience - Chapter Two  - Computers On Board The Apollo Spacecraft. (n.d.). Retrieved April 18, 2018, from https://history.nasa.gov/computers/Ch2-4.html$$__
 
 Ainsi, le matériel électronique et les ressources informatiques nécessaires à l'utilisation de celui-ci deviennent 
 toujours plus accessibles et performantes. Cela a des conséquences très simples : au lieu d'être seulement utilisées 
@@ -44,7 +44,7 @@ Le CHIP, quant à lui, est nécessaire car il permet notamment de jouer des fich
 Une partie majeure du projet est d'établir une connection entre les deux micro-contrôleurs, ainsi que l'afficheur LED, pour permettre de faire circuler des informations entre eux. Pour cela, nous utilisons le protocole de communication I2C (''Inter-Integrated Circuit''). Ce protocole est standard pour énormément de micro-contrôleurs et de prériphériques et il permet à un ''master'' de s'adresser jusqu'à 1008 ''slaves'' sur un seul bus. Le protocole utilise deux fils: SDA (fil de données de l'I2C) et SCL (horloge de l'I2C). Aussi, c'est toujours le maître qui s'adresse aux esclaves, il peut ne communiquer qu'avec un seul module à la fois. Les paquets de données I2C sont formés deux parties principales: une adresse (7 bits) et des données (8 bits) $$SFUPTOWNMAKER. (n.d.). I2C - learn.sparkfun.com. Retrieved April 28, 2018, from [https://learn.sparkfun.com/tutorials/i2c]$$. Le détail des paquets est représenté ci-dessous.
 
  ((https://oci.gyre.ch/blog/public/1718/gyp/p/oceane-patiny/.i2cProtocol_m.png||C))
- __Schéma 1 : Structure des paquets I2C. $$SFUPTOWNMAKER. (n.d.). I2C - learn.sparkfun.com. Retrieved April 28, 2018, from [https://learn.sparkfun.com/tutorials/i2c]$$__
+ __Figure 2 : Structure des paquets I2C. $$SFUPTOWNMAKER. (n.d.). I2C - learn.sparkfun.com. Retrieved April 28, 2018, from [https://learn.sparkfun.com/tutorials/i2c]$$__
 
 Dans notre projet, nous avons un ''master'', le CHIP, et 17 ''slaves'', l'ATmega32U4 et les 16 PCA9685 qui se trouvent sur les modules de l'afficheur LED. La particularité de cardReader est que nous avons dû en faire un esclave I2C et donc superviser la communication avec ce protocole à un bas niveau. Cela est expliqué dans la partie ''Méthodes''.
 

@@ -7,4 +7,8 @@ Divers programmes de test en ''Arduino'' avaient aussi été écrits afin de vé
 différentes parties des plaques. À présent, nous procédons à l'assemblage du ''hardware'' et à la 
 programmation en soi.
 
+Liens vers le projet:
+* [https://github.com/opatiny/node-steam-player]
+* [https://github.com/opatiny/stea-mp-unk-3]
+
 Ce projet a été réalisé par Océane PATINY.
